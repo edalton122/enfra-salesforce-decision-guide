@@ -202,6 +202,27 @@
   .pdf-link{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-size:13.5px;font-weight:600;text-decoration:none}
   .pdf-link:hover{text-decoration:underline}
 
+  /* Brand lockup (top bar + hero) */
+  .brand-logos{display:flex;align-items:center;gap:14px;text-decoration:none}
+  .brand-logos img{display:block;width:auto}
+  .brand-div{width:1px;height:26px;background:var(--line)}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:stretch;margin-bottom:34px}
+  .hero-grid .lede{margin:0}
+  .brand-stage{position:relative;border-radius:22px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.03));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:30px 28px;overflow:hidden;min-height:260px;box-shadow:0 20px 50px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.18)}
+  .brand-stage>*{position:relative;z-index:1}
+  .bs-glow{position:absolute!important;z-index:0!important;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(1,118,211,.6),transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);animation:bsGlow 6s ease-in-out infinite;pointer-events:none}
+  .bs-rings{position:absolute!important;z-index:0!important;width:520px;height:520px;top:50%;left:50%;margin:-260px 0 0 -260px;opacity:.55;animation:bsSpin 70s linear infinite;pointer-events:none}
+  .bs-enfra{width:min(82%,340px);height:auto;display:block}
+  .bs-sf{width:112px;height:auto;display:block;filter:drop-shadow(0 8px 22px rgba(0,161,224,.45));animation:bsFloat 5s ease-in-out infinite}
+  .bs-link{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .bs-line{position:relative;overflow:hidden;width:2px;height:22px;border-radius:2px;background:linear-gradient(180deg,rgba(214,239,75,.9),rgba(0,161,224,.9))}
+  .bs-line::after{content:"";position:absolute;left:0;width:100%;height:9px;background:#fff;filter:blur(1px);animation:bsTravel 1.8s linear infinite}
+  .bs-x{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(255,255,255,.45);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08)}
+  @keyframes bsGlow{0%,100%{opacity:.7;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
+  @keyframes bsSpin{to{transform:rotate(360deg)}}
+  @keyframes bsFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @keyframes bsTravel{from{top:-9px}to{top:100%}}
+
   .plan{position:relative}
   .plan-line{position:absolute;top:28px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sky),var(--sky-20));transform-origin:left;transform:scaleX(0);z-index:0}
   .phase{position:relative;z-index:1}
@@ -215,6 +236,9 @@
     .vs,.gstrip{grid-template-columns:1fr}
     .qlist{grid-template-columns:1fr}
     .nav{display:none}
+    .conf,.dotnav{display:none}
+    .hero-grid{grid-template-columns:1fr;gap:28px}
+    .brand-stage{min-height:0}
     .hero h1{font-size:38px}
     .lane{grid-template-columns:1fr}
     .step:not(:last-child)::after{display:none}
@@ -261,7 +285,11 @@
 
 <header class="topbar">
   <div class="wrap">
-    <div class="brand">ENFRA <span>×</span> Salesforce</div>
+    <a class="brand brand-logos" href="#" aria-label="ENFRA × Salesforce">
+      <img src="enfra-logo-dark.svg" alt="ENFRA" height="20">
+      <span class="brand-div" aria-hidden="true"></span>
+      <img src="salesforce-logo.svg" alt="Salesforce" height="38">
+    </a>
     <nav class="nav" aria-label="Sections">
       <a href="#heard">What you told us</a>
       <a href="#criteria">Your criteria</a>
@@ -276,9 +304,29 @@
 <!-- HERO -->
 <div class="hero">
   <div class="wrap">
-    <div class="eyebrow">CRM Decision Guide · November 2026</div>
-    <h1>Do it once.<br>Do it right.</h1>
-    <p class="lede">One connected platform for ENFRA's multi-year energy partnerships: from the EaaS team's 6–18 month pursuits today, to every ENFRA team tomorrow.</p>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">CRM Decision Guide · November 2026</div>
+        <h1>Do it once.<br>Do it right.</h1>
+        <p class="lede">One connected platform for ENFRA's multi-year energy partnerships: from the EaaS team's 6–18 month pursuits today, to every ENFRA team tomorrow.</p>
+      </div>
+      <div class="brand-stage" role="group" aria-label="ENFRA and Salesforce">
+        <div class="bs-glow" aria-hidden="true"></div>
+        <svg class="bs-rings" viewBox="0 0 520 520" aria-hidden="true">
+          <circle cx="260" cy="260" r="120" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1" stroke-dasharray="4 8"/>
+          <circle cx="260" cy="260" r="180" fill="none" stroke="#D6EF4B" stroke-opacity=".45" stroke-width="1" stroke-dasharray="2 10"/>
+          <circle cx="260" cy="260" r="240" fill="none" stroke="#9FD0FF" stroke-opacity=".4" stroke-width="1" stroke-dasharray="6 12"/>
+          <circle cx="380" cy="260" r="4" fill="#D6EF4B"/><circle cx="80" cy="260" r="3" fill="#9FD0FF"/><circle cx="260" cy="80" r="3" fill="#fff"/>
+        </svg>
+        <img class="bs-enfra" src="enfra-logo-light.svg" alt="ENFRA">
+        <div class="bs-link" aria-hidden="true">
+          <span class="bs-line"></span>
+          <span class="bs-x"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 2 L12 12 M12 2 L2 12" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <span class="bs-line"></span>
+        </div>
+        <img class="bs-sf" src="salesforce-logo.svg" alt="Salesforce">
+      </div>
+    </div>
 
     <div class="video" id="video">
       <a class="video-ph" id="video-ph" href="#" aria-label="Play the ENFRA overview video, 3 minutes 55 seconds">
@@ -808,6 +856,11 @@ const POSTER_SRC = "poster.jpg";
 
 /* ===== Scroll reveals ===== */
 if (gsapReady){
+  gsap.from('.hero-copy > *', {opacity:0, y:22, duration:0.7, stagger:0.12, ease:"power2.out"});
+  gsap.from('.brand-stage', {opacity:0, x:40, scale:0.96, duration:0.9, ease:"power3.out", delay:0.15});
+  gsap.from('.brand-stage .bs-enfra, .brand-stage .bs-link, .brand-stage .bs-sf', {opacity:0, y:14, duration:0.6, stagger:0.18, ease:"power2.out", delay:0.5});
+  gsap.from('#video', {opacity:0, y:30, duration:0.8, ease:"power2.out", delay:0.35});
+
   const reveal = (sel) => {
     document.querySelectorAll(sel).forEach((el, i) => {
       gsap.from(el, {opacity:0, y:24, duration:0.6, ease:"power2.out", delay:(i % 8) * 0.06, scrollTrigger:{trigger:el, start:"top 88%"}});
