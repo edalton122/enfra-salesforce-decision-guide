@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title data-from="title"></title>
+<!--
+  Print template for ENFRA_CRM_Decision_Guide.pdf.
+  Layout only: every sentence, quote, label and source is pulled verbatim from index.html / team.html
+  by build.js (data-from). Highlights (data-mark) and excerpts (data-excerpt + data-text) must be exact
+  substrings of the fact-checked copy, or the build fails.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page{size:8.5in 11in;margin:0}
+  :root{
+    --navy:#032D60; --navy2:#021B3D; --blue:#0B5CAB; --sky:#0176D3; --sky10:#EAF5FE; --sky20:#CFE9FE;
+    --teal:#06A59A; --teal10:#DEF9F3; --lime:#D6EF4B; --amber:#DD7A01; --red:#BA0517;
+    --ink:#181818; --ink2:#3E3E3C; --ink3:#5C5C5C; --line:#E3ECF6;
+    --rose:#9A6068; --rosebg:#FDF3F4; --roseline:#EED5D9; --roseink:#5A4A4C;
+  }
+  *{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{margin:0;padding:0;background:#fff}
+  body{font-family:Inter,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);font-size:11.5px;line-height:1.45;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .src{font-size:7.5px;vertical-align:super;line-height:0;color:var(--sky);font-weight:700;margin-left:1px}
+  p{margin:0}
+
+  .page{width:8.5in;height:11in;position:relative;overflow:hidden;display:flex;flex-direction:column;background:#fff;break-after:page}
+  .page:last-child{break-after:auto}
+
+  /* Running header / footer */
+  .ph{flex:0 0 44px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:linear-gradient(90deg,#fff 0%,#F2F8FF 100%);border-bottom:1px solid var(--line);position:relative;z-index:2}
+  .ph::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--lime),var(--sky),var(--teal))}
+  .lock{display:flex;align-items:center;gap:9px}
+  .ph .lock .e{height:13px}
+  .ph .lock .s{height:24px}
+  .ph .lock .bs-x svg{width:28px;height:auto}
+  .bs-x{display:inline-flex}
+  .bs-x svg{overflow:visible}
+  .bs-x .vlens{opacity:.35!important}
+  .ph .bs-x .vn1 circle{stroke:#06A59A!important}
+  .ph .bs-x .vn2 circle{stroke:#0176D3!important}
+  .ph .bs-x .vlens{fill:#0176D3!important;opacity:.25!important}
+  .ph .lab{font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--sky)}
+  .pf{flex:0 0 28px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;font-size:8px;color:#7A8CA3;background:#F5F9FD;border-top:1px solid var(--line);position:relative;z-index:2}
+  .pf b{color:var(--navy);font-weight:700}
+  .pb{flex:1 1 0;min-height:0;position:relative;padding:20px 40px 16px;display:flex;flex-direction:column;gap:16px}
+  .pb::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(420px 300px at 100% 0%,rgba(1,118,211,.09),transparent 70%),
+      radial-gradient(380px 280px at 0% 100%,rgba(214,239,75,.16),transparent 70%),
+      linear-gradient(rgba(1,118,211,.045) 1px,transparent 1px) 0 0/32px 32px,
+      linear-gradient(90deg,rgba(1,118,211,.045) 1px,transparent 1px) 0 0/32px 32px}
+  .pb > *{position:relative;z-index:1;flex-shrink:0}
+
+  .kicker{font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--sky)}
+  h2{font-size:23px;line-height:1.12;margin:3px 0 5px;color:var(--navy);letter-spacing:-.015em;font-weight:800}
+  .sub{font-size:11px;line-height:1.45;color:var(--ink3);max-width:640px}
+
+  /* ===== Cover ===== */
+  .cover{position:relative;flex:0 0 auto;padding:22px 40px 20px;color:#fff;overflow:hidden;
+    background:
+      radial-gradient(360px 260px at 92% 8%,rgba(214,239,75,.22),transparent 70%),
+      radial-gradient(420px 320px at 0% 100%,rgba(1,118,211,.55),transparent 70%),
+      linear-gradient(135deg,#021B3D 0%,#032D60 48%,#0A4E96 100%)}
+  .cover::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/36px 36px,linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/36px 36px}
+  .cover > *{position:relative}
+  .cv-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .cv-top .lock{gap:12px;padding:8px 16px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
+  .cv-top .lock .e{height:19px}
+  .cv-top .lock .s{height:36px}
+  .cv-top .lock .bs-x svg{width:40px;height:auto}
+  .cv-top .conf{font-size:9px;letter-spacing:.06em;color:#BBD9F7}
+  .cv-main{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:26px;align-items:center}
+  .eyebrow{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9FD0FF}
+  .cover h1{font-size:46px;line-height:1.02;letter-spacing:-.025em;font-weight:800;margin:8px 0 12px;color:var(--lime)}
+  .cover h1::first-line{color:#fff}
+  .lede{font-size:13px;line-height:1.5;color:#D8E9FB}
+  .cv-video{position:relative;display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.25);box-shadow:0 14px 34px rgba(0,0,0,.35)}
+  .cv-video img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+  .cv-video::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(3,45,96,.7))}
+  .pp{position:absolute;left:12px;bottom:12px;z-index:1;display:flex;align-items:center;gap:9px;background:#fff;color:var(--navy);border-radius:999px;padding:6px 14px 6px 6px}
+  .pp .play{width:28px;height:28px;border-radius:50%;background:var(--lime);display:grid;place-items:center}
+  .pp strong{display:block;font-size:11px;line-height:1.1}
+  .pp small{display:block;font-size:9px;color:var(--ink3)}
+  .cv-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.16);font-size:9.5px;color:#BBD9F7}
+  .cv-meta b{color:#fff}
+
+  /* ===== At a glance ===== */
+  .gl{display:grid;grid-template-columns:104px 1.12fr 1fr 1fr;column-gap:8px;margin-top:2px}
+  .gl-vh{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px 12px 0 0;font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+  .gl-vh.sf{background:linear-gradient(135deg,#06A59A,#0176D3);color:#fff;box-shadow:0 -4px 16px rgba(6,165,154,.25)}
+  .gl-vh.sf img{height:22px;background:#fff;border-radius:6px;padding:2px 4px}
+  .gl-vh.cmp{background:#F4E6E8;color:var(--rose)}
+  .gl-vh.cmp::before{content:"";width:7px;height:7px;border-radius:50%;background:#D9A9B0}
+  .gl-rl{position:relative;padding:12px 8px 12px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:2px}
+  .gl-rl .n{font-size:34px;font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--sky)}
+  .gl-rl .t{font-size:13px;font-weight:800;line-height:1.25;color:var(--navy)}
+  .gl-c{display:flex;gap:9px;align-items:flex-start;padding:17px 12px;border-top:1px solid var(--line)}
+  .gl-c.sf{background:linear-gradient(180deg,#E3FAF4,#F5FEFB);border-left:2px solid var(--teal);border-right:2px solid var(--teal);border-top-color:#BDEBDF}
+  .gl-c.sf.last{border-bottom:2px solid var(--teal);border-radius:0 0 12px 12px;box-shadow:0 10px 22px rgba(6,165,154,.18)}
+  .gl-c.cmp{background:var(--rosebg);border-top-color:var(--roseline)}
+  .gl-c.cmp.last{border-radius:0 0 12px 12px}
+  .ic{flex:0 0 28px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center}
+  .ic svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .ic.sf{background:var(--teal);color:#fff;box-shadow:0 0 0 4px rgba(6,165,154,.18)}
+  .ic.cmp{background:#fff;border:1px solid var(--roseline);color:#B9818A}
+  .ex{font-size:12.5px;line-height:1.42}
+  .ex .q::before{content:"\201C"}
+  .ex .q::after{content:"\201D"}
+  .ex .src{margin-left:1px}
+  .gl-c.sf .ex{color:var(--navy);font-weight:700;font-size:13px}
+  .gl-c.cmp .ex{color:var(--roseink);font-size:11.5px}
+
+  .legend-key{display:flex;gap:18px;align-items:center;font-size:9px;color:var(--ink3);margin-top:2px}
+  .legend-key span{display:inline-flex;align-items:center;gap:6px}
+  .legend-key i{display:inline-block;width:22px;height:8px;border-radius:3px}
+  .legend-key .kg{background:linear-gradient(transparent 40%,rgba(6,165,154,.45) 40%)}
+  .legend-key .kr{background:linear-gradient(transparent 40%,rgba(205,120,135,.4) 40%)}
+
+  .six{display:grid;grid-template-columns:170px 1fr;gap:16px;align-items:center;padding:13px 16px;border-radius:14px;color:#fff;
+    background:radial-gradient(220px 140px at 0% 0%,rgba(214,239,75,.25),transparent 70%),linear-gradient(120deg,#021B3D,#032D60 60%,#0A4E96);box-shadow:0 10px 24px rgba(3,45,96,.22)}
+  .six-h{font-size:17px;font-weight:800;line-height:1.15;color:var(--lime);letter-spacing:-.01em}
+  .six-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 12px}
+  .six-i{display:flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;line-height:1.2}
+  .six-i .ic{flex:0 0 20px;width:20px;height:20px;box-shadow:0 0 0 3px rgba(6,165,154,.3)}
+  .six-i .ic svg{width:11px;height:11px;stroke-width:3}
+
+  mark{color:inherit;padding:0 1px;border-radius:2px}
+  mark.g{background:linear-gradient(transparent 52%,rgba(6,165,154,.32) 52%);font-weight:700}
+  mark.r{background:linear-gradient(transparent 52%,rgba(205,120,135,.32) 52%);font-weight:600}
+
+  /* ===== Goals ===== */
+  .goals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .gc{position:relative;overflow:hidden;border-radius:14px;padding:14px 14px 14px;background:#fff;border:1px solid #D7E6F6;box-shadow:0 8px 22px rgba(3,45,96,.08)}
+  .gc::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--lime),var(--sky),var(--teal))}
+  .gc .g-ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#0176D3,#032D60);margin-bottom:8px}
+  .gc .g-ico svg{width:18px;height:18px}
+  .gc h3{margin:0 0 8px;font-size:14px;line-height:1.2;color:var(--navy)}
+  .gc .quote{position:relative;margin:0 0 6px;padding:6px 9px 6px 11px;border-radius:8px;font-size:10.5px;line-height:1.35;font-weight:700;color:var(--navy);background:linear-gradient(90deg,rgba(214,239,75,.55),rgba(214,239,75,.12))}
+  .gc .quote::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;border-radius:3px;background:linear-gradient(180deg,var(--sky),var(--teal))}
+  .gc .quote cite{display:block;font-style:normal;font-weight:500;font-size:8.5px;color:var(--ink3);margin-top:1px}
+  .gc p{font-size:10.5px;color:var(--ink2);margin-top:8px}
+
+  /* ===== Criteria (dark panel) ===== */
+  .crit-panel{position:relative;overflow:hidden;border-radius:18px;padding:18px 18px 18px;color:#fff;
+    background:
+      radial-gradient(300px 220px at 100% 0%,rgba(214,239,75,.16),transparent 70%),
+      radial-gradient(360px 260px at 0% 100%,rgba(1,118,211,.5),transparent 70%),
+      linear-gradient(160deg,#021F45 0%,#032D60 55%,#06407F 100%)}
+  .crit-panel::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px) 0 0/30px 30px}
+  .crit-panel > *{position:relative}
+  .crit-panel .kicker{color:var(--lime)}
+  .crit-panel h2{color:#fff}
+  .crit-panel .sub{color:#BBD9F7}
+  .crit-panel h2{white-space:nowrap}
+  .cp-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:end;margin-bottom:12px}
+  .score{display:flex;gap:8px}
+  .score .sc{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:92px;padding:8px 11px;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2)}
+  .score .sc b{font-size:24px;line-height:1;font-weight:800;color:var(--lime)}
+  .score .sc span{font-size:8.5px;line-height:1.25;font-weight:600;color:#D8E9FB;max-width:78px}
+  .crits{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+  .cc{display:flex;flex-direction:column;align-items:flex-start;padding:11px 12px;border-radius:13px;background:linear-gradient(150deg,rgba(255,255,255,.14),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.2)}
+  .cc .c-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .cc .c-ring{position:relative;width:30px;height:30px}
+  .cc .c-ring svg{position:absolute;inset:0;width:30px;height:30px;transform:rotate(-90deg)}
+  .cc .c-ring circle{fill:none;stroke-width:4}
+  .cc .c-ring .rb{stroke:rgba(255,255,255,.2)}
+  .cc .c-ring .rf{stroke:var(--lime)}
+  .cc .c-ring .num{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;font-weight:800}
+  .cc .c-ico{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;color:var(--navy);background:linear-gradient(135deg,#D6EF4B,#7BE0D4)}
+  .cc .c-ico svg{width:15px;height:15px}
+  .cc h3{margin:0 0 4px;font-size:12.5px;line-height:1.2}
+  .cc p{font-size:10px;line-height:1.42;color:#D8E9FB;margin-bottom:8px}
+  .cc .badge{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:8.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(214,239,75,.16);color:var(--lime);border:1px solid rgba(214,239,75,.45)}
+  .cc .badge::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--lime)}
+  .cc .badge.soft{background:rgba(159,208,255,.14);color:#9FD0FF;border-color:rgba(159,208,255,.4)}
+  .cc .badge.soft::before{background:#9FD0FF}
+
+  /* ===== Challenge detail ===== */
+  .ch{display:flex;flex-direction:column;gap:10px}
+  .ch-head{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.15fr);gap:14px;align-items:center}
+  .ch-num{display:grid;place-items:center;width:58px;height:58px;border-radius:16px;font-size:28px;font-weight:800;line-height:1;letter-spacing:-.03em;color:#fff;background:linear-gradient(135deg,#0176D3,#06A59A);box-shadow:0 8px 18px rgba(1,118,211,.28)}
+  .ch-head h3{margin:0;font-size:19px;line-height:1.15;color:var(--navy);letter-spacing:-.01em}
+  .need{font-size:10px;line-height:1.4;padding:8px 11px;border-radius:10px;color:var(--ink2);background:linear-gradient(90deg,rgba(214,239,75,.42),var(--sky10) 45%);border-left:3px solid var(--sky)}
+  .need b{color:var(--blue)}
+  .vs3{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:9px}
+  .vc{position:relative;border-radius:13px;padding:11px 12px 12px}
+  .vc .who{display:flex;align-items:center;gap:7px;margin-bottom:6px;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+  .vc .who .ic{flex-basis:22px;width:22px;height:22px}
+  .vc .who .ic svg{width:12px;height:12px}
+  .vc p{font-size:10.5px;line-height:1.45}
+  .vc.sf{background:linear-gradient(160deg,#DAF7EF,#fff 78%);border:2px solid var(--teal);box-shadow:0 0 0 4px rgba(6,165,154,.12),0 10px 22px rgba(6,165,154,.16)}
+  .vc.sf .who{color:#056764}
+  .vc.sf p{color:var(--ink)}
+  .vc.sf::before{content:"";position:absolute;left:12px;right:12px;top:-2px;height:3px;border-radius:0 0 3px 3px;background:linear-gradient(90deg,var(--teal),var(--lime),var(--sky))}
+  .vc.cmp{background:linear-gradient(180deg,#FCF1F2,#fff 80%);border:1px solid var(--roseline)}
+  .vc.cmp .who{color:var(--rose)}
+  .vc.cmp p{color:var(--roseink)}
+
+  .vis{position:relative;border-radius:14px;padding:12px 14px 12px;background:linear-gradient(180deg,#fff,#F4F9FF);border:1px solid #D3E4F6;box-shadow:0 10px 26px rgba(3,45,96,.09)}
+  .vis::before{content:"";position:absolute;left:16px;right:16px;top:-1px;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,var(--lime),var(--sky),var(--teal))}
+  .vis h4{margin:0 0 2px;font-size:12.5px;color:var(--navy)}
+  .vis .cap{font-size:9px;color:var(--ink3);margin-bottom:8px}
+  .tally{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
+  .tally .tl-stat{all:unset;display:flex;align-items:baseline;gap:8px;padding:7px 11px;border-radius:10px;background:#fff;border:1px solid var(--line)}
+  .tally .tl-stat b{font-size:19px;font-weight:800;line-height:1}
+  .tally .tl-stat span{font-size:9px;color:var(--ink3)}
+  .tally [data-filter=slip] b{color:var(--amber)}
+  .tally [data-filter=exc] b{color:var(--red)}
+  .tally [data-filter=ontime] b{color:var(--teal)}
+  .tl svg{display:block;width:100%;height:auto}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:9px;color:var(--ink3)}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .legend svg{transform:scale(.85)}
+
+  .arch{display:grid;gap:7px}
+  .lane{display:grid;grid-template-columns:132px 1fr;gap:12px;align-items:center;border-radius:11px;padding:8px 12px}
+  .lane.sf{border:2px solid var(--teal);background:linear-gradient(90deg,#DAF7EF,#fff 70%);box-shadow:0 6px 16px rgba(6,165,154,.14)}
+  .lane:not(.sf){border:1px solid var(--roseline);background:linear-gradient(90deg,#FCF1F2,#fff 70%)}
+  .lane .lname{font-weight:800;color:var(--navy);font-size:10.5px}
+  .lane .lname small{display:block;font-weight:500;color:var(--ink3);font-size:8.5px;margin-top:1px}
+  .flow{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .node{background:#fff;border:1px solid #C9C9C9;border-radius:8px;padding:5px 9px;font-size:9.5px;font-weight:700;color:var(--ink2);white-space:nowrap}
+  .node.snow{border-color:#29B5E8;color:#0A6D93;background:#EEF9FD}
+  .node.sfn{border-color:var(--sky);color:var(--blue);background:var(--sky10)}
+  .arrow{font-size:14px;line-height:1;color:#B58A90}
+  .arrow.both{color:var(--teal);font-weight:800}
+  .lane.sf .arrow{color:var(--teal)}
+  .tag{font-size:9px;color:var(--ink3);margin-left:4px}
+  .tag b{color:#056764}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);position:relative}
+  .step{position:relative;padding:4px 14px 2px 0}
+  .step .dot{position:relative;z-index:1;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,#0176D3,#032D60);box-shadow:0 0 0 4px rgba(1,118,211,.15)}
+  .step:not(:last-child)::after{content:"";position:absolute;top:17px;left:32px;right:4px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--sky),var(--lime))}
+  .step h5{margin:8px 0 3px;font-size:11.5px;color:var(--navy)}
+  .step p{font-size:9.5px;color:var(--ink3)}
+
+  .ask{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;padding:16px 20px;border-radius:14px;color:#fff;
+    background:radial-gradient(260px 160px at 100% 0%,rgba(214,239,75,.22),transparent 70%),linear-gradient(120deg,#021B3D,#032D60 60%,#0A4E96);box-shadow:0 10px 24px rgba(3,45,96,.22)}
+  .ask .qm{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:24px;font-weight:800;color:var(--navy);background:var(--lime);box-shadow:0 0 0 5px rgba(214,239,75,.22)}
+  .ask .kicker{color:var(--lime);margin-bottom:4px}
+  .ask .qt{font-size:15px;line-height:1.35;font-weight:700}
+
+  .roomy .pb{gap:20px;padding-top:26px;justify-content:space-between}
+  .roomy .vc .badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--navy);color:var(--lime)}
+  .roomy .vc .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lime)}
+  .mid .pb{gap:22px}
+  .mid .ch{gap:12px}
+  .mid .vc p{font-size:12px}
+  .mid .pb{justify-content:space-between}
+  .mid .vis{padding:14px 16px}
+  .mid .lane{padding:10px 12px}
+  .mid .step p{font-size:10.5px}
+  .mid .step h5{font-size:12.5px}
+  .p2 .cc p{font-size:10.5px}
+  .p2 .gc p,.p2 .gc .quote{font-size:11px}
+  .p2 .pb{gap:18px}
+  .tight .pb{gap:11px;padding-top:16px}
+  .tight .qtable td{padding:5px 10px}
+  .roomy .ch{gap:16px}
+  .roomy .ch-head h3{font-size:26px}
+  .roomy .need{font-size:12px;padding:11px 14px}
+  .roomy .vc{padding:16px 16px 18px}
+  .roomy .vc .who{font-size:10.5px;margin-bottom:10px}
+  .roomy .vc .who .ic{flex-basis:28px;width:28px;height:28px}
+  .roomy .vc .who .ic svg{width:15px;height:15px}
+  .roomy .vc p{font-size:14px;line-height:1.5}
+  .roomy .vis{padding:18px 20px 18px}
+  .roomy .vis h4{font-size:16px}
+  .roomy .vis .cap{font-size:10.5px;margin-bottom:12px}
+  .roomy .tally{gap:12px;margin-bottom:10px}
+  .roomy .tally .tl-stat{padding:12px 16px}
+  .roomy .tally .tl-stat b{font-size:30px}
+  .roomy .tally .tl-stat span{font-size:11px}
+  .roomy .legend{font-size:11px;margin-top:6px}
+  .roomy .legend svg{transform:none}
+
+  /* ===== Questions scorecard ===== */
+  .qtable{width:100%;border-collapse:separate;border-spacing:0;border-radius:13px;overflow:hidden;border:1px solid #D3E4F6;box-shadow:0 8px 22px rgba(3,45,96,.08)}
+  .qtable th{font-size:8.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:8px 10px;text-align:center}
+  .qtable th.qh{text-align:left;background:var(--navy);color:#fff}
+  .qtable th.sf{background:linear-gradient(135deg,#06A59A,#0176D3);color:#fff;width:96px}
+  .qtable th.cmp{background:#F4E6E8;color:var(--rose);width:96px;letter-spacing:.04em}
+  .qtable td{padding:6px 10px;font-size:10.5px;line-height:1.35;color:var(--ink2);border-top:1px solid var(--line);background:#fff}
+  .qtable tr:nth-child(even) td{background:#F7FAFE}
+  .qtable td.n{width:28px;font-weight:800;color:var(--sky);font-size:11px}
+  .qtable td.box{text-align:center}
+  .qtable td.box i{display:inline-block;width:14px;height:14px;border-radius:4px;border:1.5px solid #A9BCD2;background:#fff}
+  .qtable td.box.sf{background:#EFFBF7!important}
+  .qtable td.box.sf i{border-color:var(--teal)}
+
+  /* ===== Plan ===== */
+  .plan{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .plan::before{content:"";position:absolute;left:14px;right:14px;top:22px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--sky),var(--lime),var(--teal))}
+  .phase{position:relative;border-radius:13px;padding:12px 13px;background:#fff;border:1px solid #D3E4F6;box-shadow:0 8px 20px rgba(3,45,96,.08)}
+  .phase .pl{display:inline-flex;align-items:center;gap:6px;font-size:8.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sky);background:var(--sky10);padding:3px 9px;border-radius:999px}
+  .phase h3{margin:7px 0 4px;font-size:13px;color:var(--navy)}
+  .phase p{font-size:10px;color:var(--ink2)}
+  .phase.now{background:linear-gradient(150deg,#032D60,#0A5CAB);border:2px solid var(--lime);box-shadow:0 0 0 4px rgba(214,239,75,.2),0 10px 24px rgba(3,45,96,.3)}
+  .phase.now .pl{background:rgba(214,239,75,.18);color:var(--lime)}
+  .phase.now .pl::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lime)}
+  .phase.now h3{color:#fff}
+  .phase.now p{color:#D8E9FB}
+
+  /* ===== Call to action + team ===== */
+  .cta{position:relative;overflow:hidden;border-radius:18px;padding:16px 18px;color:#fff;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;
+    background:
+      radial-gradient(260px 200px at 100% 0%,rgba(214,239,75,.25),transparent 70%),
+      radial-gradient(300px 220px at 0% 100%,rgba(1,118,211,.55),transparent 70%),
+      linear-gradient(120deg,#021B3D,#032D60 50%,#0A4E96)}
+  .cta h3{margin:0 0 4px;font-size:17px}
+  .cta p{font-size:10.5px;color:#BBD9F7}
+  .cta .btn{display:inline-block;margin-top:10px;padding:8px 16px;border-radius:999px;background:var(--lime);color:var(--navy);font-size:11px;font-weight:800}
+  .team{display:flex;gap:8px;list-style:none;margin:0;padding:0}
+  .team li{width:118px}
+  .person{text-align:center;padding:10px 8px;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2)}
+  .person .photo{width:52px;height:52px;margin:0 auto 6px;border-radius:50%;padding:2px;background:conic-gradient(var(--lime),var(--sky),var(--teal),var(--lime))}
+  .person .photo img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;border:2px solid #032D60}
+  .person h2{font-size:10.5px;margin:0;color:#fff;letter-spacing:0;line-height:1.2}
+  .person .role{font-size:8px;color:var(--lime);font-weight:700;margin:1px 0 3px;line-height:1.25}
+  .person .addr{font-size:7.5px;color:#BBD9F7;word-break:break-all}
+
+  /* ===== Sources ===== */
+  .sources h4{margin:0 0 5px;font-size:9.5px;color:var(--navy)}
+  .sources ol{margin:0;padding-left:15px;columns:2;column-gap:20px;font-size:7.5px;line-height:1.4;color:var(--ink3)}
+  .sources li{break-inside:avoid;margin-bottom:3px}
+  .sources a{color:var(--blue)}
+  .disc{font-size:7.5px;line-height:1.4;color:var(--ink3);margin-top:5px}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1: cover + at a glance ============ -->
+<section class="page">
+  <header class="cover">
+    <div class="cv-top">
+      <div class="lock"><img class="e" src="../enfra-logo-light.svg" alt="ENFRA"><span class="bs-x" data-from=".brand-stage .bs-x"></span><img class="s" src="../salesforce-logo.svg" alt="Salesforce"></div>
+      <div class="conf" data-from=".topbar .conf"></div>
+    </div>
+    <div class="cv-main">
+      <div>
+        <div class="eyebrow" data-from=".hero .eyebrow"></div>
+        <h1 data-from=".hero h1"></h1>
+        <p class="lede" data-from=".hero .lede"></p>
+      </div>
+      <a class="cv-video" href="https://edalton122.github.io/enfra-salesforce-decision-guide/#video">
+        <img src="../poster.jpg" alt="">
+        <span class="pp"><span class="play"><svg width="11" height="12" viewBox="0 0 30 34"><path d="M0 0 L30 17 L0 34 Z" fill="#032D60"/></svg></span><span><strong data-from=".play-pill strong"></strong><small data-from="#video-note"></small></span></span>
+      </a>
+    </div>
+    <div class="cv-meta" data-from=".hero-meta"></div>
+  </header>
+
+  <div class="pb">
+    <div>
+      <div class="kicker" data-from="#compare .kicker"></div>
+      <h2 data-from="#compare h2"></h2>
+      <p class="sub" data-from="#compare .sub"></p>
+    </div>
+
+    <div class="gl">
+      <div></div>
+      <div class="gl-vh sf"><img src="../salesforce-logo.svg" alt=""><span data-from="#p1 .vs .vcol:nth-child(1) .who"></span></div>
+      <div class="gl-vh cmp"><span data-from="#p1 .vs .vcol:nth-child(2) .who"></span></div>
+      <div class="gl-vh cmp"><span data-from="#p1 .vs .vcol:nth-child(3) .who"></span></div>
+
+      <div class="gl-rl"><span class="n">01</span><span class="t" data-from="#p1 .panel-head h3"></span></div>
+      <div class="gl-c sf"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M4 20V11M10 20V5M16 20v-7M21 20H3"/></svg></span><span class="ex" data-excerpt="#p1 .vs .vcol:nth-child(1) p" data-text="pipeline, slippage and exception dashboards built in"></span></div>
+      <div class="gl-c cmp"><span class="ic cmp"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="ex" data-excerpt="#p1 .vs .vcol:nth-child(2) p" data-text="requires custom objects, which are available only on Enterprise subscriptions"></span></div>
+      <div class="gl-c cmp"><span class="ic cmp"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg></span><span class="ex" data-excerpt="#p1 .vs .vcol:nth-child(3) p" data-text="Microsoft points to Power BI, a separate product"></span></div>
+
+      <div class="gl-rl"><span class="n">02</span><span class="t" data-from="#p2 .panel-head h3"></span></div>
+      <div class="gl-c sf"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M4 8h14l-3-3M20 16H6l3 3"/></svg></span><span class="ex" data-excerpt="#p2 .vs .vcol:nth-child(1) p" data-text="Zero Copy with Snowflake works in both directions and is generally available"></span></div>
+      <div class="gl-c cmp"><span class="ic cmp"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="ex" data-excerpt="#p2 .vs .vcol:nth-child(2) p" data-text="Snowflake integrations require Data Hub Enterprise and sync on a schedule you choose, from hourly to daily"></span></div>
+      <div class="gl-c cmp"><span class="ic cmp"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg></span><span class="ex" data-excerpt="#p2 .vs .vcol:nth-child(3) p" data-text="Snowflake's Dataverse connector, which replicates selected tables"></span></div>
+
+      <div class="gl-rl"><span class="n">03</span><span class="t" data-from="#p3 .panel-head h3"></span></div>
+      <div class="gl-c sf last"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg></span><span class="ex" data-excerpt="#p3 .gstrip .vcol:nth-child(1) p" data-text="One Core edition includes Slack Business+, Tableau Next, the Premier Success Plan and 500K Flex Credits per org"></span></div>
+      <div class="gl-c cmp last"><span class="ic cmp"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="ex" data-excerpt="#p3 .gstrip .vcol:nth-child(2) p" data-text="Custom objects and sandboxes for safely testing changes are Enterprise-tier features"></span></div>
+      <div class="gl-c cmp last"><span class="ic cmp"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg></span><span class="ex" data-excerpt="#p3 .gstrip .vcol:nth-child(3) p" data-text="Dynamics 365 Sales, Customer Insights (marketing journeys) and Microsoft 365 Copilot are sold as separate products"></span></div>
+    </div>
+    <div class="six">
+      <div class="six-h" data-from="#criteria h2"></div>
+      <div class="six-list"><span class="six-i"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span data-from='.ccard[data-c="1"] .c-front h3'></span></span><span class="six-i"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span data-from='.ccard[data-c="2"] .c-front h3'></span></span><span class="six-i"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span data-from='.ccard[data-c="3"] .c-front h3'></span></span><span class="six-i"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span data-from='.ccard[data-c="4"] .c-front h3'></span></span><span class="six-i"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span data-from='.ccard[data-c="5"] .c-front h3'></span></span><span class="six-i"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span data-from='.ccard[data-c="6"] .c-front h3'></span></span></div>
+    </div>
+  </div>
+  <footer class="pf"><span data-from="title"></span><span><b>1</b> / 5</span></footer>
+</section>
+
+<!-- ============ PAGE 2: goals + criteria ============ -->
+<section class="page p2">
+  <header class="ph"><div class="lock"><img class="e" src="../enfra-logo-dark.svg" alt="ENFRA"><span class="bs-x" data-from=".brand-stage .bs-x"></span><img class="s" src="../salesforce-logo.svg" alt="Salesforce"></div><div class="lab" data-from="#heard .kicker"></div></header>
+  <div class="pb">
+    <div>
+      <div class="kicker" data-from="#heard .kicker"></div>
+      <h2 data-from="#heard h2"></h2>
+      <p class="sub" data-from="#heard .sub"></p>
+    </div>
+    <div class="goals">
+      <div class="gc" data-from='.gcard[data-g="1"] .g-front'></div>
+      <div class="gc" data-from='.gcard[data-g="2"] .g-front'></div>
+      <div class="gc" data-from='.gcard[data-g="3"] .g-front'></div>
+    </div>
+
+    <div class="crit-panel">
+      <div class="cp-head">
+        <div>
+          <div class="kicker" data-from="#criteria .kicker"></div>
+          <h2 data-from="#criteria h2"></h2>
+          <p class="sub" data-from="#criteria .sub"></p>
+        </div>
+        <div class="score" data-from="#scorebar"></div>
+      </div>
+      <div class="crits">
+        <div class="cc" data-from='.ccard[data-c="1"] .c-front'></div>
+        <div class="cc" data-from='.ccard[data-c="2"] .c-front'></div>
+        <div class="cc" data-from='.ccard[data-c="3"] .c-front'></div>
+        <div class="cc" data-from='.ccard[data-c="4"] .c-front'></div>
+        <div class="cc" data-from='.ccard[data-c="5"] .c-front'></div>
+        <div class="cc" data-from='.ccard[data-c="6"] .c-front'></div>
+      </div>
+    </div>
+  </div>
+  <footer class="pf"><span data-from="title"></span><span><b>2</b> / 5</span></footer>
+</section>
+
+<!-- ============ PAGE 3: challenge 1 ============ -->
+<section class="page roomy">
+  <header class="ph"><div class="lock"><img class="e" src="../enfra-logo-dark.svg" alt="ENFRA"><span class="bs-x" data-from=".brand-stage .bs-x"></span><img class="s" src="../salesforce-logo.svg" alt="Salesforce"></div><div class="lab" data-from="#compare .kicker"></div></header>
+  <div class="pb">
+    <div class="ch">
+      <div class="ch-head"><span class="ch-num">01</span><h3 data-from="#p1 .panel-head h3"></h3><div class="need" data-from="#p1 .need"></div></div>
+      <div class="vs3">
+        <div class="vc sf"><div class="who"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span data-from="#p1 .vs .vcol:nth-child(1) .who"></span></div><p data-from="#p1 .vs .vcol:nth-child(1) p" data-mark="g:exception dashboards built in|g:It's what you saw on October 19"></p><span class="badge" data-from='.ccard[data-c="3"] .badge'></span></div>
+        <div class="vc cmp"><div class="who"><span class="ic cmp"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span data-from="#p1 .vs .vcol:nth-child(2) .who"></span></div><p data-from="#p1 .vs .vcol:nth-child(2) p" data-mark="r:available only on Enterprise subscriptions"></p></div>
+        <div class="vc cmp"><div class="who"><span class="ic cmp"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg></span><span data-from="#p1 .vs .vcol:nth-child(3) .who"></span></div><p data-from="#p1 .vs .vcol:nth-child(3) p" data-mark="r:Power BI, a separate product"></p></div>
+      </div>
+    </div>
+    <div class="ask"><span class="qm">?</span><div><div class="kicker" data-from="#questions .kicker"></div><div class="qt" data-from="#qq1"></div></div></div>
+    <div class="vis">
+      <h4 data-from="#p1 .vis h4"></h4>
+      <p class="cap" data-from="#p1 .vis .cap"></p>
+      <div class="tally" data-from="#tally"></div>
+      <div class="tl" data-from="#p1 .tl-scroll"></div>
+      <div class="legend" data-from="#p1 .legend"></div>
+    </div>
+  </div>
+  <footer class="pf"><span data-from="title"></span><span><b>3</b> / 5</span></footer>
+</section>
+
+<!-- ============ PAGE 4: challenges 2 + 3 ============ -->
+<section class="page mid">
+  <header class="ph"><div class="lock"><img class="e" src="../enfra-logo-dark.svg" alt="ENFRA"><span class="bs-x" data-from=".brand-stage .bs-x"></span><img class="s" src="../salesforce-logo.svg" alt="Salesforce"></div><div class="lab" data-from="#compare .kicker"></div></header>
+  <div class="pb">
+    <div class="ch">
+      <div class="ch-head"><span class="ch-num">02</span><h3 data-from="#p2 .panel-head h3"></h3><div class="need" data-from="#p2 .need"></div></div>
+      <div class="vs3">
+        <div class="vc sf"><div class="who"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span data-from="#p2 .vs .vcol:nth-child(1) .who"></span></div><p data-from="#p2 .vs .vcol:nth-child(1) p" data-mark="g:works in both directions and is generally available|g:no ETL pipelines to build or maintain"></p></div>
+        <div class="vc cmp"><div class="who"><span class="ic cmp"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span data-from="#p2 .vs .vcol:nth-child(2) .who"></span></div><p data-from="#p2 .vs .vcol:nth-child(2) p" data-mark="r:require Data Hub Enterprise|r:sync on a schedule you choose, from hourly to daily"></p></div>
+        <div class="vc cmp"><div class="who"><span class="ic cmp"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg></span><span data-from="#p2 .vs .vcol:nth-child(3) .who"></span></div><p data-from="#p2 .vs .vcol:nth-child(3) p" data-mark="r:replicates selected tables"></p></div>
+      </div>
+      <div class="vis">
+        <h4 data-from="#p2 .vis h4"></h4>
+        <p class="cap" data-from="#p2 .vis .cap"></p>
+        <div class="arch" data-from="#p2 .arch"></div>
+      </div>
+    </div>
+
+    <div class="ch">
+      <div class="ch-head"><span class="ch-num">03</span><h3 data-from="#p3 .panel-head h3"></h3><div class="need" data-from="#p3 .need"></div></div>
+      <div class="vis">
+        <h4 data-from="#p3 .vis h4"></h4>
+        <p class="cap" data-from="#p3 .vis .cap"></p>
+        <div class="steps" data-from="#p3 .steps"></div>
+      </div>
+      <div class="vs3">
+        <div class="vc sf"><div class="who"><span class="ic sf"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span data-from="#p3 .gstrip .vcol:nth-child(1) .who"></span></div><p data-from="#p3 .gstrip .vcol:nth-child(1) p" data-mark="g:One Core edition includes"></p></div>
+        <div class="vc cmp"><div class="who"><span class="ic cmp"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span data-from="#p3 .gstrip .vcol:nth-child(2) .who"></span></div><p data-from="#p3 .gstrip .vcol:nth-child(2) p" data-mark="r:Enterprise-tier features"></p></div>
+        <div class="vc cmp"><div class="who"><span class="ic cmp"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg></span><span data-from="#p3 .gstrip .vcol:nth-child(3) .who"></span></div><p data-from="#p3 .gstrip .vcol:nth-child(3) p" data-mark="r:sold as separate products"></p></div>
+      </div>
+    </div>
+  </div>
+  <footer class="pf"><span data-from="title"></span><span><b>4</b> / 5</span></footer>
+</section>
+
+<!-- ============ PAGE 5: questions + plan + next step + sources ============ -->
+<section class="page tight">
+  <header class="ph"><div class="lock"><img class="e" src="../enfra-logo-dark.svg" alt="ENFRA"><span class="bs-x" data-from=".brand-stage .bs-x"></span><img class="s" src="../salesforce-logo.svg" alt="Salesforce"></div><div class="lab" data-from="#plan .kicker"></div></header>
+  <div class="pb">
+    <div>
+      <div class="kicker" data-from="#questions .kicker"></div>
+      <h2 data-from="#questions h2"></h2>
+      <p class="sub" data-from="#questions .sub"></p>
+    </div>
+    <table class="qtable">
+      <thead><tr><th class="qh" colspan="2"></th><th class="sf" data-from="#p1 .vs .vcol:nth-child(1) .who"></th><th class="cmp" data-from="#p1 .vs .vcol:nth-child(2) .who"></th><th class="cmp" data-from="#p1 .vs .vcol:nth-child(3) .who"></th></tr></thead>
+      <tbody>
+        <tr><td class="n">01</td><td data-from="#qq1"></td><td class="box sf"><i></i></td><td class="box"><i></i></td><td class="box"><i></i></td></tr>
+        <tr><td class="n">02</td><td data-from="#qq2"></td><td class="box sf"><i></i></td><td class="box"><i></i></td><td class="box"><i></i></td></tr>
+        <tr><td class="n">03</td><td data-from="#qq3"></td><td class="box sf"><i></i></td><td class="box"><i></i></td><td class="box"><i></i></td></tr>
+        <tr><td class="n">04</td><td data-from="#qq4"></td><td class="box sf"><i></i></td><td class="box"><i></i></td><td class="box"><i></i></td></tr>
+        <tr><td class="n">05</td><td data-from="#qq5"></td><td class="box sf"><i></i></td><td class="box"><i></i></td><td class="box"><i></i></td></tr>
+        <tr><td class="n">06</td><td data-from="#qq6"></td><td class="box sf"><i></i></td><td class="box"><i></i></td><td class="box"><i></i></td></tr>
+      </tbody>
+    </table>
+
+    <div>
+      <div class="kicker" data-from="#plan .kicker"></div>
+      <h2 data-from="#plan h2"></h2>
+      <p class="sub" data-from="#plan .sub"></p>
+    </div>
+    <div class="plan">
+      <div class="phase now" data-from=".plan .phase:nth-child(2)"></div>
+      <div class="phase" data-from=".plan .phase:nth-child(3)"></div>
+      <div class="phase" data-from=".plan .phase:nth-child(4)"></div>
+    </div>
+
+    <div class="cta">
+      <div>
+        <h3 data-from=".cta h3"></h3>
+        <p data-from=".cta > div > p"></p>
+        <a class="btn" href="https://edalton122.github.io/enfra-salesforce-decision-guide/team.html" data-from="#cta-link"></a>
+      </div>
+      <ul class="team" data-from=".team" data-page="team"></ul>
+    </div>
+
+    <div class="sources">
+      <h4 data-from="footer h4"></h4>
+      <ol data-from="footer ol"></ol>
+      <p class="disc" data-from="footer .disc"></p>
+    </div>
+  </div>
+  <footer class="pf"><span data-from="title"></span><span><b>5</b> / 5</span></footer>
+</section>
+
+</body>
+</html>
