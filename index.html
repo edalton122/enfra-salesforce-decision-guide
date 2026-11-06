@@ -559,6 +559,17 @@
   .bs-line::after{width:8px;height:100%;top:0;left:-8px;animation:bsTravelX 1.8s linear infinite}
   .bs-x{width:26px;height:26px}
   @keyframes bsTravelX{from{left:-8px}to{left:100%}}
+
+  /* Partnership mark between the logos: two interlocking rings that gently draw together */
+  .bs-x{width:54px;height:37px;border:0;background:none;border-radius:0;filter:drop-shadow(0 0 8px rgba(214,239,75,.35))}
+  .bs-x svg{overflow:visible;width:54px;height:auto}
+  .bs-x .vn1{animation:vennA 3.6s ease-in-out infinite}
+  .bs-x .vn2{animation:vennB 3.6s ease-in-out infinite}
+  .bs-x .vlens{opacity:.35;animation:lensGlow 3.6s ease-in-out infinite}
+  @keyframes vennA{0%,100%{transform:translateX(-2px)}50%{transform:translateX(2.5px)}}
+  @keyframes vennB{0%,100%{transform:translateX(2px)}50%{transform:translateX(-2.5px)}}
+  @keyframes lensGlow{0%,100%{opacity:.2}50%{opacity:.65}}
+
   .video{margin:0 auto;max-width:min(1080px,max(560px,calc((100vh - 275px) * 1.7778)))}
   .hero-meta{margin-top:18px;justify-content:center}
   .scroll-cue{margin-top:6px}
@@ -714,7 +725,12 @@
         <img class="bs-enfra" src="enfra-logo-light.svg" alt="ENFRA">
         <div class="bs-link" aria-hidden="true">
           <span class="bs-line"></span>
-          <span class="bs-x"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 2 L12 12 M12 2 L2 12" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <span class="bs-x"><svg width="40" height="28" viewBox="0 0 40 28" fill="none">
+            <defs><clipPath id="vennClip"><circle cx="14" cy="14" r="9"/></clipPath></defs>
+            <g class="vn1"><circle cx="14" cy="14" r="9" stroke="#D6EF4B" stroke-width="2"/></g>
+            <g class="vn2"><circle cx="26" cy="14" r="9" stroke="#9FD0FF" stroke-width="2"/></g>
+            <g clip-path="url(#vennClip)"><g class="vn2"><circle class="vlens" cx="26" cy="14" r="9" fill="#fff"/></g></g>
+          </svg></span>
           <span class="bs-line"></span>
         </div>
         <img class="bs-sf" src="salesforce-logo.svg" alt="Salesforce">
