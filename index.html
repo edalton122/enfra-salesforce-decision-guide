@@ -329,6 +329,93 @@
   @keyframes flipPulse{0%{box-shadow:0 4px 14px rgba(0,0,0,.3),0 0 0 0 rgba(214,239,75,.7)}100%{box-shadow:0 4px 14px rgba(0,0,0,.3),0 0 0 14px rgba(214,239,75,0)}}
   .cf{position:absolute;width:8px;height:12px;border-radius:2px;pointer-events:none;z-index:5}
 
+
+  /* ===== Goals + criteria: flip-card stages ===== */
+  #heard,#criteria{position:relative;overflow:hidden}
+  #heard .wrap,#criteria .wrap{position:relative;z-index:1}
+  #heard{background:linear-gradient(180deg,#fff 0%,#EAF5FE 100%)}
+  .g-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;background-image:linear-gradient(rgba(1,118,211,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(1,118,211,.06) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
+  .g-bg i{position:absolute;border-radius:50%;filter:blur(70px)}
+  .g-bg i:nth-child(1){width:420px;height:420px;background:rgba(1,118,211,.22);top:-100px;right:-80px;animation:orb2 20s ease-in-out infinite}
+  .g-bg i:nth-child(2){width:340px;height:340px;background:rgba(214,239,75,.3);bottom:-120px;left:-60px;animation:orb1 24s ease-in-out infinite}
+
+  #criteria{background:linear-gradient(160deg,#021F45 0%,#032D60 55%,#06407F 100%);color:#fff}
+  #criteria .kicker{color:#D6EF4B}
+  #criteria h2{color:#fff}
+  #criteria .sub{color:#BBD9F7;margin-bottom:28px}
+
+  .fcgrid{align-items:stretch;gap:22px}
+  .fcwrap{perspective:1200px;display:flex}
+  .fc{--rx:0deg;--ry:0deg;--ty:0px;position:relative;width:100%;transform-style:preserve-3d;transform:translateY(var(--ty)) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .18s ease-out}
+  .fc:hover{--ty:-5px}
+  .fc-inner{display:grid;height:100%;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.2,.8,.2,1)}
+  .fc.flipped .fc-inner{transform:rotateY(180deg)}
+  .fc-face{grid-area:1/1;position:relative;overflow:hidden;border-radius:22px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+  .fc-back{transform:rotateY(180deg)}
+  .fc-rows{display:grid;gap:9px}
+  .vs-chip{justify-self:center;margin:-2px 0;padding:2px 14px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+  .fc.flipped .qb-row{animation:qrow .5s ease both}
+  .fc.flipped .fc-rows > :nth-child(3){animation-delay:.35s}
+  .fc.flipped .fc-rows > :nth-child(4){animation-delay:.5s}
+  .fc.flipped .fc-rows > :nth-child(5){animation-delay:.6s}
+  .fc.flipped .qb-row.sf{animation:qrow .5s ease both,qglow 2.6s ease-in-out .9s infinite}
+  .fc-flip{position:absolute;top:14px;right:14px;z-index:3;transform:translateZ(2px);width:34px;height:34px;border-radius:50%;border:0;background:#fff;color:#032D60;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.3);animation:flipPulse 2.2s ease-out 5}
+  .fc-flip svg{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+  .fc.flipped .fc-flip svg{transform:rotate(180deg)}
+  .fc-flip:focus-visible{outline:3px solid #D6EF4B;outline-offset:2px}
+  .gcard .fc-flip{background:#032D60;color:#D6EF4B;box-shadow:0 4px 14px rgba(3,45,96,.35)}
+  .fc:not(.static){cursor:pointer}
+
+  /* Goals (light stage) */
+  .g-front{padding:30px 26px 62px;background:#fff;border:1px solid rgba(1,118,211,.2);box-shadow:0 14px 38px rgba(3,45,96,.13)}
+  .g-front::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,transparent,#D6EF4B,#0176D3,#06A59A,transparent);background-size:200% 100%;animation:qshine 4s linear infinite}
+  .g-num{position:absolute;right:14px;bottom:-16px;font-size:120px;font-weight:800;letter-spacing:-.04em;line-height:1;color:rgba(1,118,211,.07);user-select:none}
+  .g-ico{position:relative;width:58px;height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(135deg,#0176D3,#032D60);box-shadow:0 10px 24px rgba(1,118,211,.38);margin-bottom:18px}
+  .g-ico::after{content:"";position:absolute;inset:0;border-radius:18px;border:2px solid #0176D3;animation:icoRing 2.8s ease-out infinite}
+  @keyframes icoRing{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+  .g-front h3{position:relative;font-size:23px;line-height:1.2;margin:0 0 16px;color:var(--navy)}
+  .g-front .quote{position:relative;border-left:0;border-radius:12px;padding:11px 14px 11px 18px;margin:0 0 10px;font-weight:600;color:var(--navy);background-color:var(--sky-10);background-image:linear-gradient(90deg,rgba(214,239,75,.65),rgba(214,239,75,.12));background-repeat:no-repeat;background-position:left;background-size:100% 100%;transition:background-size 1.1s cubic-bezier(.2,.8,.2,1) .35s}
+  .g-front .quote::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:4px;border-radius:4px;background:linear-gradient(180deg,#0176D3,#06A59A)}
+  .g-front .quote cite{font-weight:500}
+  .g-front p{position:relative;margin:16px 0 0;font-size:15px;color:var(--ink-2)}
+  .arm:not(.in) .g-front .quote{background-size:0% 100%}
+  .g-hint{position:absolute;left:26px;bottom:20px;display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--sky)}
+  .g-hint::before{content:"";width:8px;height:8px;border-radius:50%;background:#06A59A;animation:livedot 1.8s ease-in-out infinite}
+  .g-hint::after{content:"\2192";display:inline-block;animation:nudge 1.4s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+  @keyframes livedot{0%,100%{box-shadow:0 0 0 0 rgba(6,165,154,.55)}50%{box-shadow:0 0 0 6px rgba(6,165,154,0)}}
+  .g-back{background:linear-gradient(160deg,#032D60,#06407F);border:2px solid #D6EF4B;box-shadow:0 0 0 5px rgba(214,239,75,.2),0 22px 50px rgba(3,45,96,.4);padding:58px 16px 18px;color:#fff}
+  .g-back .vs-chip{background:#D6EF4B;color:#032D60}
+
+  /* Criteria (dark stage) */
+  .scorebar{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:30px}
+  .sc{position:relative;overflow:hidden;border-radius:18px;padding:18px 22px;border:1px solid rgba(255,255,255,.2);background:linear-gradient(150deg,rgba(255,255,255,.14),rgba(255,255,255,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.22);display:flex;align-items:center;gap:16px}
+  .sc b{font-size:46px;line-height:1;font-weight:800;letter-spacing:-.03em;background:linear-gradient(135deg,#D6EF4B,#7BE0D4);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sc span{font-size:14px;font-weight:600;color:#D8E9FB;line-height:1.35}
+  .c-front{display:flex;flex-direction:column;align-items:flex-start;padding:22px 22px 22px;background:linear-gradient(150deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.2);box-shadow:0 18px 44px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.25)}
+  .c-front::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,transparent,#D6EF4B,#0176D3,#06A59A,transparent);background-size:200% 100%;animation:qshine 4s linear infinite}
+  .c-wm{position:absolute;right:12px;bottom:34px;font-size:104px;font-weight:800;letter-spacing:-.04em;line-height:1;color:rgba(255,255,255,.06);user-select:none}
+  .c-top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .c-ring{position:relative;width:52px;height:52px;flex:0 0 52px}
+  .c-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+  .c-ring circle{fill:none;stroke-width:3.5}
+  .c-ring .rb{stroke:rgba(255,255,255,.2)}
+  .c-ring .rf{stroke:#D6EF4B;stroke-linecap:round;stroke-dasharray:138.23;stroke-dashoffset:0;transition:stroke-dashoffset 1.3s cubic-bezier(.3,.7,.2,1) .3s}
+  .arm:not(.in) .c-ring .rf{stroke-dashoffset:138.23}
+  .c-ring .num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;width:auto;height:auto;margin:0;background:none;color:#fff;font-size:19px;font-weight:800}
+  .c-ico{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#032D60;background:linear-gradient(135deg,#D6EF4B,#7BE0D4);box-shadow:0 8px 22px rgba(214,239,75,.28)}
+  .c-ico svg{width:24px;height:24px}
+  .c-front h3{margin:0 0 10px;font-size:21px;line-height:1.25;color:#fff}
+  .c-front p{margin:0 0 18px;font-size:15.5px;line-height:1.55;color:#D8E9FB}
+  #criteria .badge{margin-top:auto;display:inline-flex;align-items:center;gap:8px;background:rgba(214,239,75,.14);color:#D6EF4B;border:1px solid rgba(214,239,75,.45)}
+  #criteria .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:#D6EF4B;animation:limedot 1.8s ease-in-out infinite}
+  #criteria .badge.soft{background:rgba(159,208,255,.12);color:#9FD0FF;border-color:rgba(159,208,255,.4)}
+  #criteria .badge.soft::before{background:#9FD0FF;animation:none}
+  @keyframes limedot{0%,100%{box-shadow:0 0 0 0 rgba(214,239,75,.6)}50%{box-shadow:0 0 0 6px rgba(214,239,75,0)}}
+  .ccard:hover .c-front{border-color:rgba(214,239,75,.7);box-shadow:0 0 0 1px rgba(214,239,75,.6),0 0 30px rgba(214,239,75,.2),0 18px 44px rgba(0,0,0,.28)}
+  .c-back{background:#fff;border:2px solid var(--teal);box-shadow:0 0 0 5px rgba(6,165,154,.18),0 22px 50px rgba(0,0,0,.35);padding:58px 16px 16px;color:var(--ink)}
+  .c-back .vs-chip{background:var(--teal-10);color:#056764}
+
   /* Brand lockup (top bar + hero) */
   .brand-logos{display:flex;align-items:center;gap:14px;text-decoration:none}
   .brand-logos img{display:block;width:auto}
@@ -363,6 +450,10 @@
     .vs,.gstrip,.tally{grid-template-columns:1fr}
     .qlist,.qgrid{grid-template-columns:1fr}
     .qcard{height:495px}
+    .scorebar{gap:8px}
+    .sc{flex-direction:column;align-items:flex-start;gap:6px;padding:14px}
+    .sc b{font-size:32px}
+    .sc span{font-size:11.5px}
     .nav{display:none}
     .conf,.dotnav{display:none}
     .hero-grid{grid-template-columns:1fr;gap:28px}
@@ -381,6 +472,22 @@
     #timeline{min-width:0}
     .tl-scroll{overflow:visible}
     .mdrawer,.src-pop,.vc-plus,.beckon,.q-bg,.q-flip,.q-glare,.q-num,.cf{display:none!important}
+    .g-bg,.fc-flip,.g-hint,.g-num,.c-wm,.fc-back,.c-ico,.c-ring svg,.scorebar{display:none!important}
+    #heard{background:#fff!important}
+    #criteria{background:#fff!important;color:var(--ink)}
+    #criteria h2{color:var(--navy)}
+    #criteria .sub{color:var(--ink-3)}
+    #criteria .kicker{color:var(--sky)}
+    .fc{transform:none!important}
+    .fc-inner{display:block;transform:none!important}
+    .fc-face{position:static;transform:none!important;backface-visibility:visible;box-shadow:none!important;background:#fff!important;color:var(--ink)!important;border:1px solid var(--line)!important;padding:14px 16px!important}
+    .g-front::before,.c-front::before{display:none}
+    .g-front h3,.c-front h3{color:var(--navy)}
+    .g-front .quote{background:var(--sky-10)!important;color:var(--ink-2)}
+    .c-front p{color:var(--ink-2)}
+    .c-ring{width:auto;height:auto;flex:none}
+    .c-ring .num{position:static;color:var(--blue);background:var(--sky-10);width:30px;height:30px;border-radius:8px;font-size:14px}
+    #criteria .badge{background:var(--teal-10);color:#056764;border:0}
     #questions{background:#fff!important;color:var(--ink)}
     #questions h2{color:var(--navy)}
     #questions .sub{color:var(--ink-3)}
@@ -494,28 +601,62 @@
 
 <!-- WHAT YOU TOLD US -->
 <section id="heard">
+  <div class="g-bg" aria-hidden="true"><i></i><i></i></div>
   <div class="wrap">
     <div class="kicker">What you told us</div>
     <h2>Your goals, in your words</h2>
     <p class="sub">Today, multi-million-dollar pursuits are tracked across spreadsheets, three CRMs, and email follow-up that never reaches a shared system. Here's what ENFRA asked for instead.</p>
-    <div class="grid3">
-      <div class="card">
-        <h3>See every long pursuit clearly</h3>
-        <div class="quote">“Milestones, projected vs. actual dates, and key activities”<cite>ENFRA evaluation criteria</cite></div>
-        <div class="quote">“Exception reporting and management visibility”<cite>ENFRA evaluation criteria</cite></div>
-        <p>Leaders should see what slipped, and why, before it shows up in the quarter.</p>
+    <div class="grid3 fcgrid" id="glist">
+      <div class="fcwrap">
+        <div class="fc gcard" data-g="1">
+          <div class="fc-inner">
+            <div class="fc-face g-front">
+              <span class="g-num" aria-hidden="true">01</span>
+              <span class="g-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg></span>
+              <h3>See every long pursuit clearly</h3>
+          <div class="quote">“Milestones, projected vs. actual dates, and key activities”<cite>ENFRA evaluation criteria</cite></div>
+          <div class="quote">“Exception reporting and management visibility”<cite>ENFRA evaluation criteria</cite></div>
+          <p>Leaders should see what slipped, and why, before it shows up in the quarter.</p>
+              <span class="g-hint" aria-hidden="true">Flip to see how each vendor answers</span>
+            </div>
+            <div class="fc-face fc-back g-back"><div class="fc-rows"></div></div>
+          </div>
+          <button type="button" class="fc-flip" aria-label="Flip card to compare vendors" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12A9 9 0 0 1 18.5 5.8L21 8"/><path d="M21 3v5h-5"/></svg></button>
+        </div>
       </div>
-      <div class="card">
-        <h3>Business-led and Snowflake-ready</h3>
-        <div class="quote">“Integration approach, particularly with Snowflake”<cite>ENFRA evaluation criteria</cite></div>
-        <div class="quote">“Ability to adapt the platform after go-live”<cite>ENFRA evaluation criteria</cite></div>
-        <p>A platform the business owns and changes without code, connected to your existing data investment.</p>
+      <div class="fcwrap">
+        <div class="fc gcard" data-g="2">
+          <div class="fc-inner">
+            <div class="fc-face g-front">
+              <span class="g-num" aria-hidden="true">02</span>
+              <span class="g-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M4.9 7l14.2 10M4.9 17 19.1 7"/></svg></span>
+              <h3>Business-led and Snowflake-ready</h3>
+          <div class="quote">“Integration approach, particularly with Snowflake”<cite>ENFRA evaluation criteria</cite></div>
+          <div class="quote">“Ability to adapt the platform after go-live”<cite>ENFRA evaluation criteria</cite></div>
+          <p>A platform the business owns and changes without code, connected to your existing data investment.</p>
+              <span class="g-hint" aria-hidden="true">Flip to see how each vendor answers</span>
+            </div>
+            <div class="fc-face fc-back g-back"><div class="fc-rows"></div></div>
+          </div>
+          <button type="button" class="fc-flip" aria-label="Flip card to compare vendors" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12A9 9 0 0 1 18.5 5.8L21 8"/><path d="M21 3v5h-5"/></svg></button>
+        </div>
       </div>
-      <div class="card">
-        <h3>Start focused, then grow</h3>
-        <div class="quote">“Think big, act small.”<cite>ENFRA team</cite></div>
-        <div class="quote">“Do it once, do it right.”<cite>ENFRA team</cite></div>
-        <p>Begin with the EaaS sales and marketing team, prove value, then extend across ENFRA.</p>
+      <div class="fcwrap">
+        <div class="fc gcard" data-g="3">
+          <div class="fc-inner">
+            <div class="fc-face g-front">
+              <span class="g-num" aria-hidden="true">03</span>
+              <span class="g-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span>
+              <h3>Start focused, then grow</h3>
+          <div class="quote">“Think big, act small.”<cite>ENFRA team</cite></div>
+          <div class="quote">“Do it once, do it right.”<cite>ENFRA team</cite></div>
+          <p>Begin with the EaaS sales and marketing team, prove value, then extend across ENFRA.</p>
+              <span class="g-hint" aria-hidden="true">Flip to see how each vendor answers</span>
+            </div>
+            <div class="fc-face fc-back g-back"><div class="fc-rows"></div></div>
+          </div>
+          <button type="button" class="fc-flip" aria-label="Flip card to compare vendors" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12A9 9 0 0 1 18.5 5.8L21 8"/><path d="M21 3v5h-5"/></svg></button>
+        </div>
       </div>
     </div>
   </div>
@@ -523,46 +664,120 @@
 
 <!-- SIX CRITERIA -->
 <section id="criteria" class="alt">
+  <div class="q-bg" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="wrap">
     <div class="kicker">Your evaluation criteria</div>
     <h2>How Salesforce meets all six</h2>
     <p class="sub">Each criterion below maps to what ENFRA's team saw in the October 19 demonstration, or to the plan we'll walk through together.</p>
-    <div class="grid-crit">
-      <div class="crit">
-        <div class="num">1</div>
-        <h3>Target market (TAM) management</h3>
-        <p>ENFRA's own tiers, sectors and transaction types as fields, duplicate rules so two reps don't work the same customer, and AI-assisted account enrichment.</p>
-        <span class="badge">Seen in the 10/19 demo</span>
+    <div class="scorebar" id="scorebar">
+      <div class="sc"><b data-count="6">6</b><span>Criteria ENFRA set</span></div>
+      <div class="sc"><b data-count="4">4</b><span>Shown in the October 19 demo</span></div>
+      <div class="sc"><b data-count="3">3</b><span>Head-to-head comparisons below</span></div>
+    </div>
+    <div class="grid-crit fcgrid" id="clist">
+      <div class="fcwrap">
+        <div class="fc ccard static" data-c="1">
+          <div class="fc-inner">
+            <div class="fc-face c-front">
+              <span class="c-wm" aria-hidden="true">01</span>
+              <div class="c-top">
+                <div class="c-ring"><svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><circle class="rb" cx="26" cy="26" r="22"/><circle class="rf" cx="26" cy="26" r="22"/></svg><div class="num">1</div></div>
+                <span class="c-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+              </div>
+              <h3>Target market (TAM) management</h3>
+              <p>ENFRA's own tiers, sectors and transaction types as fields, duplicate rules so two reps don't work the same customer, and AI-assisted account enrichment.</p>
+              <span class="badge">Seen in the 10/19 demo</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="crit">
-        <div class="num">2</div>
-        <h3>Communication & activity</h3>
-        <p>Emails and meetings from Outlook captured to the right account and deal, with follow-up tasks created automatically.</p>
-        <span class="badge">Seen in the 10/19 demo</span>
+      <div class="fcwrap">
+        <div class="fc ccard static" data-c="2">
+          <div class="fc-inner">
+            <div class="fc-face c-front">
+              <span class="c-wm" aria-hidden="true">02</span>
+              <div class="c-top">
+                <div class="c-ring"><svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><circle class="rb" cx="26" cy="26" r="22"/><circle class="rf" cx="26" cy="26" r="22"/></svg><div class="num">2</div></div>
+                <span class="c-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+              </div>
+              <h3>Communication & activity</h3>
+              <p>Emails and meetings from Outlook captured to the right account and deal, with follow-up tasks created automatically.</p>
+              <span class="badge">Seen in the 10/19 demo</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="crit">
-        <div class="num">3</div>
-        <h3>Deal lifecycle</h3>
-        <p>ENFRA's stages with projected vs. actual milestone dates, slippage tracking and an exceptions dashboard for leadership.</p>
-        <span class="badge">Seen in the 10/19 demo</span>
+      <div class="fcwrap">
+        <div class="fc ccard" data-c="3">
+          <div class="fc-inner">
+            <div class="fc-face c-front">
+              <span class="c-wm" aria-hidden="true">03</span>
+              <div class="c-top">
+                <div class="c-ring"><svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><circle class="rb" cx="26" cy="26" r="22"/><circle class="rf" cx="26" cy="26" r="22"/></svg><div class="num">3</div></div>
+                <span class="c-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg></span>
+              </div>
+              <h3>Deal lifecycle</h3>
+              <p>ENFRA's stages with projected vs. actual milestone dates, slippage tracking and an exceptions dashboard for leadership.</p>
+              <span class="badge">Seen in the 10/19 demo</span>
+            </div>
+            <div class="fc-face fc-back c-back"><div class="fc-rows"></div></div>
+          </div>
+          <button type="button" class="fc-flip" aria-label="Flip card to compare vendors" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12A9 9 0 0 1 18.5 5.8L21 8"/><path d="M21 3v5h-5"/></svg></button>
+        </div>
       </div>
-      <div class="crit">
-        <div class="num">4</div>
-        <h3>Campaign management</h3>
-        <p>Segments built from CRM data, templates with dynamic content, event RSVPs with automatic follow-up, and results on the record sellers already use.</p>
-        <span class="badge">Seen in the 10/19 demo</span>
+      <div class="fcwrap">
+        <div class="fc ccard" data-c="4">
+          <div class="fc-inner">
+            <div class="fc-face c-front">
+              <span class="c-wm" aria-hidden="true">04</span>
+              <div class="c-top">
+                <div class="c-ring"><svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><circle class="rb" cx="26" cy="26" r="22"/><circle class="rf" cx="26" cy="26" r="22"/></svg><div class="num">4</div></div>
+                <span class="c-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 9a4 4 0 0 1 0 6"/><path d="M18 6a8 8 0 0 1 0 12"/></svg></span>
+              </div>
+              <h3>Campaign management</h3>
+              <p>Segments built from CRM data, templates with dynamic content, event RSVPs with automatic follow-up, and results on the record sellers already use.</p>
+              <span class="badge">Seen in the 10/19 demo</span>
+            </div>
+            <div class="fc-face fc-back c-back"><div class="fc-rows"></div></div>
+          </div>
+          <button type="button" class="fc-flip" aria-label="Flip card to compare vendors" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12A9 9 0 0 1 18.5 5.8L21 8"/><path d="M21 3v5h-5"/></svg></button>
+        </div>
       </div>
-      <div class="crit">
-        <div class="num">5</div>
-        <h3>Implementation & flexibility</h3>
-        <p>A focused Phase 1, no-code configuration your team can keep changing after go-live, and zero-copy access to Snowflake when you're ready.</p>
-        <span class="badge soft">Phased plan below</span>
+      <div class="fcwrap">
+        <div class="fc ccard" data-c="5">
+          <div class="fc-inner">
+            <div class="fc-face c-front">
+              <span class="c-wm" aria-hidden="true">05</span>
+              <div class="c-top">
+                <div class="c-ring"><svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><circle class="rb" cx="26" cy="26" r="22"/><circle class="rf" cx="26" cy="26" r="22"/></svg><div class="num">5</div></div>
+                <span class="c-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></span>
+              </div>
+              <h3>Implementation & flexibility</h3>
+              <p>A focused Phase 1, no-code configuration your team can keep changing after go-live, and zero-copy access to Snowflake when you're ready.</p>
+              <span class="badge soft">Phased plan below</span>
+            </div>
+            <div class="fc-face fc-back c-back"><div class="fc-rows"></div></div>
+          </div>
+          <button type="button" class="fc-flip" aria-label="Flip card to compare vendors" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12A9 9 0 0 1 18.5 5.8L21 8"/><path d="M21 3v5h-5"/></svg></button>
+        </div>
       </div>
-      <div class="crit">
-        <div class="num">6</div>
-        <h3>Three-year total cost</h3>
-        <p>One clear view of licensing, implementation and support across three years, with nothing left to add later.</p>
-        <span class="badge soft">We'll review it with you directly</span>
+      <div class="fcwrap">
+        <div class="fc ccard" data-c="6">
+          <div class="fc-inner">
+            <div class="fc-face c-front">
+              <span class="c-wm" aria-hidden="true">06</span>
+              <div class="c-top">
+                <div class="c-ring"><svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><circle class="rb" cx="26" cy="26" r="22"/><circle class="rf" cx="26" cy="26" r="22"/></svg><div class="num">6</div></div>
+                <span class="c-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+              </div>
+              <h3>Three-year total cost</h3>
+              <p>One clear view of licensing, implementation and support across three years, with nothing left to add later.</p>
+              <span class="badge soft">We'll review it with you directly</span>
+            </div>
+            <div class="fc-face fc-back c-back"><div class="fc-rows"></div></div>
+          </div>
+          <button type="button" class="fc-flip" aria-label="Flip card to compare vendors" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12A9 9 0 0 1 18.5 5.8L21 8"/><path d="M21 3v5h-5"/></svg></button>
+        </div>
       </div>
     </div>
   </div>
@@ -1030,7 +1245,7 @@ const POSTER_SRC = "poster.jpg";
     2: ['#p3 .gstrip .vcol:nth-child(1)', '#p3 .gstrip .vcol:nth-child(2)'],
     3: ['#p2 .vs .vcol:nth-child(1)', '#p2 .vs .vcol:nth-child(2)', '#p2 .vs .vcol:nth-child(3)'],
     4: ['#p3 .gstrip .vcol:nth-child(1)', '#p3 .gstrip .vcol:nth-child(3)'],
-    5: [{who:true, p:'.grid-crit .crit:nth-child(5) p'}],
+    5: [{who:true, p:'.ccard[data-c="5"] .c-front p'}],
     6: [{who:true, p:'.plan .phase:last-child p'}]
   };
   function row(sel){
@@ -1090,6 +1305,103 @@ const POSTER_SRC = "poster.jpg";
     io.observe(list);
   }
 })();
+
+/* ===== Goals + criteria flip cards: backs reuse the vendor sentences already on this page, verbatim ===== */
+(function(){
+  const $ = s => document.querySelector(s);
+  const sfWho = $('#p1 .vcol.sf .who');
+  const reduced = prefersReducedMotion;
+  const P1 = [1,2,3].map(i => '#p1 .vs .vcol:nth-child(' + i + ')');
+  const P2 = [1,2,3].map(i => '#p2 .vs .vcol:nth-child(' + i + ')');
+  const GS = [1,2,3].map(i => '#p3 .gstrip .vcol:nth-child(' + i + ')');
+  const gmap = {1:P1, 2:P2, 3:GS};
+  const cmap = {3:P1, 4:[{own:true}, GS[2]], 5:P2, 6:GS};
+
+  function mkRow(sel, card){
+    const r = document.createElement('div');
+    if (typeof sel === 'string'){
+      const c = $(sel); if (!c) return null;
+      r.className = 'qb-row' + (c.classList.contains('sf') ? ' sf' : '');
+      r.appendChild(c.querySelector('.who').cloneNode(true));
+      r.appendChild(c.querySelector('p').cloneNode(true));
+    } else {
+      const own = card.querySelector('.c-front p'); if (!own) return null;
+      r.className = 'qb-row sf';
+      r.appendChild(sfWho.cloneNode(true));
+      r.appendChild(own.cloneNode(true));
+    }
+    return r;
+  }
+  function fill(card, list){
+    const rows = card.querySelector('.fc-rows'); if (!rows) return;
+    list.forEach((s, i) => {
+      const r = mkRow(s, card); if (!r) return;
+      rows.appendChild(r);
+      if (i === 0 && list.length > 1){
+        const v = document.createElement('div'); v.className = 'vs-chip'; v.setAttribute('aria-hidden','true'); v.textContent = 'vs'; rows.appendChild(v);
+      }
+    });
+  }
+
+  const cards = Array.from(document.querySelectorAll('.fc:not(.static)'));
+  cards.forEach(card => {
+    const m = card.classList.contains('gcard') ? gmap[card.dataset.g] : cmap[card.dataset.c];
+    fill(card, m || []);
+    const btn = card.querySelector('.fc-flip');
+    const flip = () => { const on = card.classList.toggle('flipped'); btn.setAttribute('aria-pressed', on); };
+    card.addEventListener('click', e => { if (e.target.closest('a')) return; flip(); });
+    btn.addEventListener('click', e => { e.stopPropagation(); flip(); });
+  });
+
+  // pointer tilt for every card (mouse only, not reduced motion)
+  if (!reduced && window.matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('.fc').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const b = card.getBoundingClientRect(), px = (e.clientX - b.left) / b.width, py = (e.clientY - b.top) / b.height;
+        const k = card.classList.contains('flipped') ? 0.5 : 1;
+        card.style.setProperty('--ry', ((px - 0.5) * 10 * k) + 'deg');
+        card.style.setProperty('--rx', ((0.5 - py) * 8 * k) + 'deg');
+      });
+      card.addEventListener('mouseleave', () => { card.style.setProperty('--rx','0deg'); card.style.setProperty('--ry','0deg'); });
+    });
+  }
+
+  // arm entrance animations (quote sweep, number rings), count-up tiles, one-time peek hint
+  if (!('IntersectionObserver' in window)) return;
+  ['heard','criteria'].forEach(id => {
+    const sec = document.getElementById(id);
+    if (!sec) return;
+    if (!reduced) sec.classList.add('arm');
+    const io = new IntersectionObserver(es => {
+      if (!es[0].isIntersecting) return;
+      io.disconnect();
+      sec.classList.add('in');
+      if (id === 'criteria' && !reduced){
+        sec.querySelectorAll('.sc b[data-count]').forEach(b => {
+          const to = +b.dataset.count, t0 = performance.now();
+          const step = t => { const k = Math.min(1, (t - t0) / 1100); b.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+          b.textContent = '0'; requestAnimationFrame(step);
+        });
+      }
+    }, {threshold:0.2});
+    io.observe(sec);
+  });
+  if (!reduced && Element.prototype.animate){
+    ['glist','clist'].forEach(id => {
+      const list = document.getElementById(id); if (!list) return;
+      const io = new IntersectionObserver(es => {
+        if (!es[0].isIntersecting) return;
+        io.disconnect();
+        setTimeout(() => list.querySelectorAll('.fc:not(.static)').forEach((c, i) => {
+          if (c.classList.contains('flipped')) return;
+          c.querySelector('.fc-inner').animate([{transform:'rotateY(0deg)'},{transform:'rotateY(30deg)',offset:.4},{transform:'rotateY(0deg)'}], {duration:1100, delay:i*140, easing:'ease-in-out'});
+        }), 1200);
+      }, {threshold:0.5});
+      io.observe(list);
+    });
+  }
+})();
+
 
 /* ===== Milestone timeline ===== */
 (function(){
@@ -1329,8 +1641,9 @@ if (gsapReady){
       gsap.from(el, {opacity:0, y:24, duration:0.6, ease:"power2.out", delay:(i % 8) * 0.06, scrollTrigger:{trigger:el, start:"top 88%"}});
     });
   };
-  reveal('#heard .card');
-  reveal('.grid-crit .crit');
+  gsap.from('#heard .fcwrap', {opacity:0, y:50, rotateX:-18, transformPerspective:900, duration:0.8, stagger:0.12, ease:"power3.out", clearProps:"transform,opacity", scrollTrigger:{trigger:'#glist', start:"top 85%"}});
+  gsap.from('#criteria .sc', {opacity:0, y:30, scale:0.92, duration:0.6, stagger:0.1, ease:"back.out(1.5)", clearProps:"transform,opacity", scrollTrigger:{trigger:'#scorebar', start:"top 90%"}});
+  gsap.from('#criteria .fcwrap', {opacity:0, y:50, rotateX:-18, transformPerspective:900, duration:0.7, stagger:0.09, ease:"power3.out", clearProps:"transform,opacity", scrollTrigger:{trigger:'#clist', start:"top 85%"}});
   gsap.from('#questions .qwrap', {opacity:0, y:50, rotateX:-18, transformPerspective:900, duration:0.8, stagger:0.1, ease:"power3.out", clearProps:"transform,opacity", scrollTrigger:{trigger:'#qlist', start:"top 82%"}});
 
   gsap.from('.plan-line', {scaleX:0, duration:0.9, ease:"power2.out", scrollTrigger:{trigger:'#plan', start:"top 75%"}});
