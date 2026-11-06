@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Your Salesforce team | ENFRA × Salesforce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#032D60; --blue:#0B5CAB; --sky:#0176D3; --teal:#06A59A; --lime:#D6EF4B;
+    --ink:#181818; --ink-2:#3E3E3C; --ink-3:#5C5C5C; --line:#E5E5E5;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:Inter,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#fff;background:#021B3D;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit}
+
+  .topbar{background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);position:relative;z-index:5}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;width:100%}
+  .brand-logos{display:flex;align-items:center;gap:14px;text-decoration:none}
+  .brand-logos img{display:block;width:auto}
+  .brand-div{width:1px;height:26px;background:var(--line)}
+  .back{font-size:14px;font-weight:600;color:var(--sky);text-decoration:none;white-space:nowrap}
+  .back:hover{text-decoration:underline}
+
+  main{position:relative;flex:1;overflow:hidden;padding:72px 0 88px;background:linear-gradient(180deg,#032D60 0%,#021B3D 100%)}
+  main::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 75%)}
+  .orb{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none}
+  .orb.a{width:520px;height:520px;left:-140px;top:-120px;background:rgba(1,118,211,.45);animation:drift1 14s ease-in-out infinite}
+  .orb.b{width:420px;height:420px;right:-120px;bottom:-100px;background:rgba(6,165,154,.32);animation:drift2 16s ease-in-out infinite}
+  @keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(90px,60px)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-100px,-50px)}}
+  main .wrap{position:relative;z-index:1}
+
+  .intro{text-align:center;max-width:720px;margin:0 auto 52px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;color:var(--lime)}
+  h1{font-size:46px;line-height:1.1;letter-spacing:-.02em;margin:12px 0 14px}
+  .lead{font-size:18px;color:#CFE3F8;margin:0}
+  .intro > *{animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+  .intro > *:nth-child(2){animation-delay:.08s}
+  .intro > *:nth-child(3){animation-delay:.16s}
+  @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;list-style:none;margin:0;padding:0}
+  .team li{perspective:1000px;animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+  .team li:nth-child(1){animation-delay:.25s}
+  .team li:nth-child(2){animation-delay:.38s}
+  .team li:nth-child(3){animation-delay:.51s}
+  .person{--rx:0deg;--ry:0deg;position:relative;height:100%;text-align:center;padding:34px 26px 28px;border-radius:22px;border:1px solid rgba(255,255,255,.2);background:linear-gradient(150deg,rgba(255,255,255,.15),rgba(255,255,255,.04));box-shadow:0 18px 44px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.25);transform:translateY(0) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .2s ease-out,border-color .25s,box-shadow .25s;overflow:hidden}
+  .person::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,transparent,var(--lime),var(--sky),var(--teal),transparent);background-size:200% 100%;animation:shine 4s linear infinite}
+  @keyframes shine{from{background-position:200% 0}to{background-position:-200% 0}}
+  .person:hover{transform:translateY(-8px) rotateX(var(--rx)) rotateY(var(--ry));border-color:var(--lime);box-shadow:0 0 0 1px var(--lime),0 0 36px rgba(214,239,75,.28),0 24px 54px rgba(0,0,0,.35)}
+
+  .photo{position:relative;width:148px;height:148px;margin:0 auto 20px;border-radius:50%;padding:4px;background:conic-gradient(from 0deg,var(--lime),var(--sky),var(--teal),var(--lime));animation:spin 8s linear infinite}
+  .photo img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid #06244B;animation:spin 8s linear infinite reverse}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .person:hover .photo,.person:hover .photo img{animation-duration:3s}
+  h2{margin:0 0 4px;font-size:24px;letter-spacing:-.01em}
+  .role{font-size:14.5px;font-weight:600;color:var(--lime);margin-bottom:2px}
+  .org{font-size:13px;color:#9FD0FF;margin-bottom:22px}
+  .mail{display:flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;border-radius:999px;background:#fff;color:var(--navy);font-weight:700;font-size:14.5px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:transform .2s,background .2s,box-shadow .2s}
+  .mail svg{flex:0 0 18px;transition:transform .25s}
+  .mail:hover,.mail:focus-visible{background:var(--lime);transform:translateY(-2px);box-shadow:0 10px 24px rgba(214,239,75,.35)}
+  .mail:hover svg{transform:translateX(3px) rotate(-8deg)}
+  .addr{margin-top:12px;font-size:13px;color:#BBD9F7;word-break:break-all}
+  .addr a{text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.4)}
+  .addr a:hover{color:var(--lime);border-color:var(--lime)}
+  a:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+
+  .all{text-align:center;margin-top:44px;animation:rise .8s cubic-bezier(.2,.8,.2,1) .7s both}
+  .all p{margin:0 0 14px;color:#CFE3F8}
+  .all a{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:999px;border:2px solid rgba(255,255,255,.7);color:#fff;font-weight:700;text-decoration:none;transition:background .2s,color .2s,border-color .2s,transform .2s}
+  .all a:hover,.all a:focus-visible{background:#fff;color:var(--navy);border-color:#fff;transform:translateY(-2px)}
+
+  footer{padding:20px 0;background:#021B3D;color:#8FB4DE;font-size:12.5px;text-align:center;border-top:1px solid rgba(255,255,255,.08)}
+
+  @media (max-width:900px){
+    .team{grid-template-columns:1fr;max-width:420px;margin:0 auto}
+    h1{font-size:34px}
+    main{padding:48px 0 64px}
+    .back{font-size:13px}
+  }
+  @media (max-width:600px){
+    .back .long{display:none}
+    .brand-logos{gap:10px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  @media print{
+    body{background:#fff;color:#000}
+    main{background:#fff;padding:20px 0}main::before,.orb{display:none}
+    .person{background:#fff;border:1px solid #999;box-shadow:none;color:#000}
+    .role,.org,.addr,.lead,.eyebrow,.all p{color:#333}
+    .mail{border:1px solid #333;box-shadow:none}
+    .photo{background:none;animation:none}.photo img{animation:none}
+    .all{display:none}
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand-logos" href="index.html" aria-label="ENFRA × Salesforce, back to the decision guide">
+      <img src="enfra-logo-dark.svg" alt="ENFRA" height="20">
+      <span class="brand-div" aria-hidden="true"></span>
+      <img src="salesforce-logo.svg" alt="Salesforce" height="38">
+    </a>
+    <a class="back" href="index.html">&larr; Back<span class="long"> to the decision guide</span></a>
+  </div>
+</header>
+
+<main>
+  <div class="orb a" aria-hidden="true"></div>
+  <div class="orb b" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="intro">
+      <div class="eyebrow">Your Salesforce team</div>
+      <h1>Next step: an architecture session</h1>
+      <p class="lead">Your Snowflake environment, Microsoft 365, and your roadmap, with your business and data teams together. Choose who you'd like to hear from and send them a note.</p>
+    </div>
+
+    <ul class="team">
+      <li>
+        <article class="person">
+          <div class="photo"><img src="photo-shawn.jpg" alt="Shawn Bowlus" width="148" height="148"></div>
+          <h2>Shawn Bowlus</h2>
+          <div class="role">New Logo Account Executive</div>
+          <div class="org">Salesforce</div>
+          <a class="mail" href="mailto:sbowlus@salesforce.com?subject=ENFRA%20architecture%20session">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Email Shawn
+          </a>
+          <div class="addr"><a href="mailto:sbowlus@salesforce.com?subject=ENFRA%20architecture%20session">sbowlus@salesforce.com</a></div>
+        </article>
+      </li>
+      <li>
+        <article class="person">
+          <div class="photo"><img src="photo-eric.jpg" alt="Eric Dalton" width="148" height="148"></div>
+          <h2>Eric Dalton</h2>
+          <div class="role">Lead Solutions Engineer</div>
+          <div class="org">Salesforce</div>
+          <a class="mail" href="mailto:edalton@salesforce.com?subject=ENFRA%20architecture%20session">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Email Eric
+          </a>
+          <div class="addr"><a href="mailto:edalton@salesforce.com?subject=ENFRA%20architecture%20session">edalton@salesforce.com</a></div>
+        </article>
+      </li>
+      <li>
+        <article class="person">
+          <div class="photo"><img src="photo-grant.jpg" alt="Grant Stephens" width="148" height="148"></div>
+          <h2>Grant Stephens</h2>
+          <div class="role">RVP, Sales</div>
+          <div class="org">Salesforce</div>
+          <a class="mail" href="mailto:gstephens@salesforce.com?subject=ENFRA%20architecture%20session">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Email Grant
+          </a>
+          <div class="addr"><a href="mailto:gstephens@salesforce.com?subject=ENFRA%20architecture%20session">gstephens@salesforce.com</a></div>
+        </article>
+      </li>
+    </ul>
+
+    <div class="all">
+      <p>Prefer one email to all three of us?</p>
+      <a href="mailto:sbowlus@salesforce.com,edalton@salesforce.com,gstephens@salesforce.com?subject=ENFRA%20architecture%20session">Email the whole team</a>
+    </div>
+  </div>
+</main>
+
+<footer>Prepared for ENFRA · Confidential</footer>
+
+<script>
+(function(){
+  // Pointer tilt on the cards (mouse only, skipped for reduced motion)
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.matchMedia('(hover:hover)').matches) return;
+  document.querySelectorAll('.person').forEach(function(c){
+    c.addEventListener('mousemove', function(e){
+      var b = c.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
+      c.style.setProperty('--ry', ((x - .5) * 10) + 'deg');
+      c.style.setProperty('--rx', ((.5 - y) * 8) + 'deg');
+    });
+    c.addEventListener('mouseleave', function(){ c.style.setProperty('--rx','0deg'); c.style.setProperty('--ry','0deg'); });
+  });
+})();
+</script>
+</body>
+</html>
