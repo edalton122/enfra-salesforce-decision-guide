@@ -202,6 +202,14 @@
   .pdf-link{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-size:13.5px;font-weight:600;text-decoration:none}
   .pdf-link:hover{text-decoration:underline}
 
+  /* Competitor cards: a quiet, slightly cooler-than-neutral rose cast (no icons, no strong reds) */
+  .vcol:not(.sf){border-color:#F0D8DB;background:linear-gradient(180deg,#FDF5F5 0%,#FFFFFF 85%);transition:border-color .2s}
+  .vcol:not(.sf) .who{color:#9A6068}
+  .vcol:not(.sf) .who::before{content:"";width:8px;height:8px;border-radius:50%;background:#E6BCC1;flex:0 0 8px}
+  .vcol:not(.sf) p{color:#4A4546}
+  .lane:not(.sf){border-color:#F0D8DB;background:linear-gradient(180deg,#FEF7F7,#FFFFFF)}
+  .lane:not(.sf) .arrow{color:#B58A90}
+
   /* Brand lockup (top bar + hero) */
   .brand-logos{display:flex;align-items:center;gap:14px;text-decoration:none}
   .brand-logos img{display:block;width:auto}
