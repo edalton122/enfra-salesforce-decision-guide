@@ -383,6 +383,21 @@
   .qb-cta{display:flex;align-items:center;justify-content:center;text-align:center;gap:8px;margin-top:4px;padding:12px 14px;border-radius:12px;background:var(--navy);color:#fff;font-weight:700;font-size:13.5px;text-decoration:none;transition:background .2s,color .2s,transform .2s}
   .qb-cta:hover,.qb-cta:focus-visible{background:#D6EF4B;color:#032D60;transform:translateY(-2px)}
 
+
+  /* Vendor questions: cards size to their content (no dead space), vendor chips fill the front */
+  .qwrap{display:flex}
+  .qcard{height:auto;width:100%}
+  .q-inner{position:static;display:grid;height:100%}
+  .q-face{position:relative;inset:auto;grid-area:1/1}
+  .q-front{justify-content:flex-start;gap:16px;padding:64px 24px 22px}
+  .q-text{font-size:20px;line-height:1.38}
+  .q-num{bottom:auto;top:46px;right:16px;font-size:96px}
+  .q-chips{position:relative;margin-top:auto;padding-top:6px;display:flex;flex-wrap:wrap;gap:7px}
+  .q-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:700;color:#F3C6CC;background:rgba(243,185,192,.09);border:1px solid rgba(243,185,192,.38)}
+  .q-chip.sf{color:#D6EF4B;background:rgba(214,239,75,.14);border-color:rgba(214,239,75,.55)}
+  .q-chip.sf::before{content:"";width:6px;height:6px;border-radius:50%;background:#D6EF4B;animation:limedot 1.8s ease-in-out infinite}
+  .qcard:hover .q-chip.sf{background:rgba(214,239,75,.24)}
+
   /* Goals (light stage) */
   .g-front{padding:30px 26px 62px;background:#fff;border:1px solid rgba(1,118,211,.2);box-shadow:0 14px 38px rgba(3,45,96,.13)}
   .g-front::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,transparent,#D6EF4B,#0176D3,#06A59A,transparent);background-size:200% 100%;animation:qshine 4s linear infinite}
@@ -489,7 +504,6 @@
     .grid3,.grid-crit,.plan,.steps{grid-template-columns:1fr}
     .vs,.gstrip,.tally{grid-template-columns:1fr}
     .qlist,.qgrid{grid-template-columns:1fr}
-    .qcard{height:495px}
     .scorebar{gap:8px}
     .sc{flex-direction:column;align-items:flex-start;gap:6px;padding:14px}
     .sc b{font-size:32px}
@@ -511,6 +525,7 @@
     .video-ph.print-only{display:flex}
     #timeline{min-width:0}
     .tl-scroll{overflow:visible}
+    .q-chips{display:none!important}
     .mdrawer,.src-pop,.vc-plus,.beckon,.q-bg,.q-flip,.q-glare,.q-num,.cf{display:none!important}
     .g-bg,.fc-flip,.g-hint,.g-num,.c-wm,.fc-back,.c-ico,.c-ring svg,.scorebar{display:none!important}
     #heard{background:#fff!important}
@@ -1311,6 +1326,9 @@ const POSTER_SRC = "poster.jpg";
   cards.forEach(card => {
     const rows = card.querySelector('.q-rows');
     (src[card.dataset.q] || []).forEach(s => { const r = row(s); if (r) rows.appendChild(r); });
+    const chips = document.createElement('div'); chips.className = 'q-chips'; chips.setAttribute('aria-hidden','true');
+    rows.querySelectorAll('.qb-row').forEach(r => { const c = document.createElement('span'); c.className = 'q-chip' + (r.classList.contains('sf') ? ' sf' : ''); c.textContent = r.querySelector('.who').textContent.trim(); chips.appendChild(c); });
+    card.querySelector('.q-front').insertBefore(chips, card.querySelector('.q-glare'));
     const btn = card.querySelector('.q-flip');
     const flip = () => {
       const on = card.classList.toggle('flipped');
