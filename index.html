@@ -210,6 +210,64 @@
   .lane:not(.sf){border-color:#F0D8DB;background:linear-gradient(180deg,#FEF7F7,#FFFFFF)}
   .lane:not(.sf) .arrow{color:#B58A90}
 
+  /* ===== Interactive comparison ===== */
+  .panel > .vs > .vcol,.panel > .gstrip > .vcol{position:relative;cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s}
+  .panel > .vs > .vcol:hover,.panel > .gstrip > .vcol:hover,.panel > .vs > .vcol.open,.panel > .gstrip > .vcol.open{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .panel > .vs > .vcol.sf:hover,.panel > .gstrip > .vcol.sf:hover{box-shadow:0 0 0 4px rgba(6,165,154,.12),var(--shadow)}
+  .panel > .vs > .vcol:focus-visible,.panel > .gstrip > .vcol:focus-visible{outline:3px solid var(--sky-20);outline-offset:2px}
+  .vc-plus{position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s;animation:plusPulse 2.4s ease-out 3}
+  .vcol.sf .vc-plus{border-color:var(--teal)}
+  .vcol.open .vc-plus{transform:rotate(45deg);background:var(--sky-10)}
+  @keyframes plusPulse{0%{box-shadow:0 0 0 0 rgba(1,118,211,.35)}100%{box-shadow:0 0 0 10px rgba(1,118,211,0)}}
+  .src-pop{position:absolute;left:-1px;right:-1px;top:calc(100% + 8px);z-index:15;background:#fff;border:1px solid var(--sky-20);border-radius:12px;box-shadow:0 14px 34px rgba(3,45,96,.18);padding:12px 14px;font-size:12.5px;line-height:1.5;color:var(--ink-2);cursor:default;animation:panelIn .2s ease both}
+  .src-pop .sp-i{display:flex;gap:8px;margin-bottom:8px}
+  .src-pop .sp-i:last-child{margin-bottom:0}
+  .src-pop .sp-i b{flex:0 0 18px;height:18px;border-radius:50%;background:var(--sky-10);color:var(--blue);font-size:11px;display:flex;align-items:center;justify-content:center}
+  .src-pop a{color:var(--blue);word-break:break-word}
+
+  .lane{cursor:pointer;transition:opacity .25s,transform .18s,box-shadow .18s}
+  .lane:hover{box-shadow:var(--shadow)}
+  .lane.on{box-shadow:var(--shadow);transform:translateY(-1px)}
+  .arch.focus .lane:not(.on){opacity:.45}
+
+  .vis h4 .beckon{display:inline-flex;vertical-align:middle;margin-left:8px;color:var(--sky);animation:tap 1.8s ease-in-out infinite}
+  .vis h4 .beckon.off{display:none}
+  @keyframes tap{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(3px,4px) scale(.9)}}
+  .tally{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:2px 0 16px}
+  .tl-stat{appearance:none;font:inherit;text-align:left;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+  .tl-stat b{font-size:26px;line-height:1.1;color:var(--navy);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .tl-stat span{font-size:12.5px;color:var(--ink-3)}
+  .tl-stat[data-filter="slip"] b{color:var(--amber)}
+  .tl-stat[data-filter="exc"] b{color:var(--red)}
+  .tl-stat[data-filter="ontime"] b{color:#056764}
+  .tl-stat:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--sky-20)}
+  .tl-stat[aria-pressed="true"]{border-color:var(--sky);background:var(--sky-10)}
+  .tl-stat:focus-visible{outline:3px solid var(--sky-20);outline-offset:2px}
+  #timeline .ms-row{cursor:pointer;transition:opacity .25s;outline:none}
+  #timeline .ms-row .hit{transition:fill .15s}
+  #timeline .ms-row:hover .hit,#timeline .ms-row:focus-visible .hit{fill:rgba(1,118,211,.06)}
+  #timeline .ms-row.sel .hit{fill:rgba(1,118,211,.11)}
+  #timeline .ms-row.dim{opacity:.2}
+  #timeline .halo{transform-box:fill-box;transform-origin:center;opacity:0;animation:halo 2.6s ease-out infinite}
+  @keyframes halo{0%{transform:scale(.8);opacity:.55}70%,100%{transform:scale(2.6);opacity:0}}
+  #timeline .chev{transform-box:fill-box;transform-origin:center;animation:nudge 1.8s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+  #timeline .ms-row.sel .chev{animation:none;transform:rotate(90deg)}
+  #timeline.touched .halo{display:none}
+  .mdrawer{margin-top:16px;border:1px solid var(--sky-20);background:linear-gradient(180deg,#F5FAFF,#fff);border-radius:14px;padding:18px 20px;animation:panelIn .35s ease both}
+  .mdrawer[hidden]{display:none}
+  .md-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .md-head h5{margin:0;font-size:17px;color:var(--navy)}
+  .md-close{appearance:none;border:1px solid var(--line);background:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .md-chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 8px}
+  .chip{font-size:13px;font-weight:600;padding:5px 11px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--ink-2)}
+  .chip.amber{background:var(--amber-10);border-color:#F7D9B8;color:#9A5200}
+  .chip.teal{background:var(--teal-10);border-color:#BDEFE6;color:#056764}
+  .chip.red{background:var(--red-10);border-color:#F6C3CB;color:var(--red)}
+  .md-note{margin:0 0 14px;font-size:14.5px;color:var(--ink-3)}
+  .mdrawer .vs{margin:0}
+  .mdrawer .vcol{cursor:default}
+
   /* Brand lockup (top bar + hero) */
   .brand-logos{display:flex;align-items:center;gap:14px;text-decoration:none}
   .brand-logos img{display:block;width:auto}
@@ -241,7 +299,7 @@
 
   @media screen and (max-width:900px){
     .grid3,.grid-crit,.plan,.steps{grid-template-columns:1fr}
-    .vs,.gstrip{grid-template-columns:1fr}
+    .vs,.gstrip,.tally{grid-template-columns:1fr}
     .qlist{grid-template-columns:1fr}
     .nav{display:none}
     .conf,.dotnav{display:none}
@@ -260,6 +318,7 @@
     .video-ph.print-only{display:flex}
     #timeline{min-width:0}
     .tl-scroll{overflow:visible}
+    .mdrawer,.src-pop,.vc-plus,.beckon{display:none!important}
     .cap .hover-hint{display:none}
     #criteria,#compare,#questions{break-before:page}
     .hero{padding:28px 0 30px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -468,14 +527,28 @@
         </div>
       </div>
       <div class="vis">
-        <h4>What leadership sees: one pursuit, every milestone</h4>
+        <h4>What leadership sees: one pursuit, every milestone<span class="beckon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 7-6 2-2 6z"/></svg></span></h4>
         <p class="cap">Illustrative view based on the fictional “Midwestern State University: Campus Solar & Microgrid” pursuit from the October 19 demo.<span class="hover-hint"> Hover a milestone for detail.</span></p>
+        <div class="tally" id="tally">
+          <button type="button" class="tl-stat" data-filter="slip" aria-pressed="false"><b data-count="7" data-prefix="+" data-suffix=" wks">+7 wks</b><span>Total slippage</span></button>
+          <button type="button" class="tl-stat" data-filter="exc" aria-pressed="false"><b data-count="1">1</b><span>Exception flagged</span></button>
+          <button type="button" class="tl-stat" data-filter="ontime" aria-pressed="false"><b data-count="1" data-suffix=" of 4">1 of 4</b><span>On time</span></button>
+        </div>
         <div class="tl-scroll"><svg id="timeline" viewBox="0 0 960 410" role="img" aria-label="Milestone timeline comparing projected and actual dates across an 18-month pursuit"></svg></div>
         <div class="legend">
           <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#0176D3" stroke-width="2.5"/></svg>Projected</span>
           <span><svg width="16" height="16"><circle cx="8" cy="8" r="6.5" fill="#0176D3"/></svg>Actual</span>
           <span><svg width="28" height="10"><line x1="2" y1="5" x2="26" y2="5" stroke="#DD7A01" stroke-width="3"/></svg>Slippage</span>
           <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#BA0517" stroke-width="2.5" stroke-dasharray="3 2"/></svg>Forecast at risk</span>
+        </div>
+        <div class="mdrawer" id="mdrawer" hidden>
+          <div class="md-head">
+            <h5 id="md-title"></h5>
+            <button type="button" class="md-close" id="md-close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2 L12 12 M12 2 L2 12" stroke="#3E3E3C" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+          </div>
+          <div class="md-chips" id="md-chips"></div>
+          <p class="md-note" id="md-note"></p>
+          <div class="vs md-vs" id="md-vs"></div>
         </div>
       </div>
     </div>
@@ -662,11 +735,11 @@ if (gsapReady){ gsap.registerPlugin(ScrollTrigger); }
 function animatePanel(panel){
   if (!gsapReady || !panel) return;
   const cols = panel.querySelectorAll('.vs .vcol, .gstrip .vcol');
-  if (cols.length) gsap.fromTo(cols, {opacity:0, y:16}, {opacity:1, y:0, duration:0.5, stagger:0.1, ease:"power2.out"});
+  if (cols.length) gsap.fromTo(cols, {opacity:0, y:16}, {opacity:1, y:0, duration:0.5, stagger:0.1, ease:"power2.out", clearProps:"transform,opacity"});
   const steps = panel.querySelectorAll('.step');
-  if (steps.length) gsap.fromTo(steps, {opacity:0, y:16}, {opacity:1, y:0, duration:0.5, stagger:0.15, ease:"power2.out", delay:0.1});
+  if (steps.length) gsap.fromTo(steps, {opacity:0, y:16}, {opacity:1, y:0, duration:0.5, stagger:0.15, ease:"power2.out", delay:0.1, clearProps:"transform,opacity"});
   const lanes = panel.querySelectorAll('.lane');
-  if (lanes.length) gsap.fromTo(lanes, {opacity:0, x:-16}, {opacity:1, x:0, duration:0.5, stagger:0.12, ease:"power2.out"});
+  if (lanes.length) gsap.fromTo(lanes, {opacity:0, x:-16}, {opacity:1, x:0, duration:0.5, stagger:0.12, ease:"power2.out", clearProps:"transform,opacity"});
 }
 
 /* ===== Configuration ===== */
@@ -815,6 +888,7 @@ const POSTER_SRC = "poster.jpg";
   el('text', {x:x(today), y:bottom+40, 'text-anchor':'middle', 'font-size':11.5, 'font-weight':700, fill:C.navy}, "Today");
 
   const tip = document.getElementById('tip');
+  const rows = [];
   function bindTip(node, html){
     node.style.cursor = "default";
     node.addEventListener('mousemove', e => { tip.innerHTML = html; tip.style.opacity = 1; tip.style.left = (e.clientX + 14) + "px"; tip.style.top = (e.clientY + 14) + "px"; });
@@ -826,7 +900,11 @@ const POSTER_SRC = "poster.jpg";
     const y = top + i*rowH + rowH/2;
     const g = document.createElementNS(NS,'g'); svg.appendChild(g);
     const add = (n,a,t) => { const e = document.createElementNS(NS,n); for (const k in a) e.setAttribute(k,a[k]); if (t!=null) e.textContent = t; g.appendChild(e); return e; };
-    add('rect', {x:0, y:y-rowH/2+4, width:W, height:rowH-8, fill:"transparent"});
+    g.setAttribute('class', 'ms-row');
+    g.setAttribute('tabindex', '0');
+    g.setAttribute('role', 'button');
+    g.setAttribute('aria-label', d.name + ': show details');
+    add('rect', {class:'hit', x:0, y:y-rowH/2+4, width:W, height:rowH-8, rx:10, fill:"transparent"});
     add('text', {x:L-12, y:y+4, 'text-anchor':'end', 'font-size':13, 'font-weight':600, fill:C.ink2}, d.name);
     let html = "<b>" + d.name + "</b><br>Projected: " + fmt(d.p);
     if (d.a != null){
@@ -837,11 +915,13 @@ const POSTER_SRC = "poster.jpg";
         add('text', {x:x(d.p)+14, y:y+4, 'font-size':11, 'font-weight':700, fill:C.teal}, "On time");
       }
       add('circle', {cx:x(d.p), cy:y, r:7, fill:"#fff", stroke:C.sky, 'stroke-width':2.5});
+      add('circle', {class:'halo', cx:x(d.a), cy:y, r:9, fill:C.sky, style:'animation-delay:' + (i*0.35) + 's'});
       add('circle', {cx:x(d.a), cy:y, r:7.5, fill:C.sky});
       html += "<br>Actual: " + fmt(d.a);
     } else {
       add('line', {x1:x(d.p), y1:y, x2:x(d.f), y2:y, stroke:C.red, 'stroke-width':3, 'stroke-dasharray':'5 4'});
       add('circle', {cx:x(d.p), cy:y, r:7, fill:"#fff", stroke:C.sky, 'stroke-width':2.5});
+      add('circle', {class:'halo', cx:x(d.f), cy:y, r:9, fill:C.red, style:'animation-delay:' + (i*0.35) + 's'});
       add('circle', {cx:x(d.f), cy:y, r:7, fill:"#fff", stroke:C.red, 'stroke-width':2.5, 'stroke-dasharray':'3 2'});
       // Exception flag
       const fx = x(d.f) + 16;
@@ -851,15 +931,147 @@ const POSTER_SRC = "poster.jpg";
       html += "<br>Forecast: " + fmt(d.f) + "<br><b>Exception:</b> " + d.exception;
     }
     html += "<br><span style='opacity:.8'>" + d.note + "</span>";
+    add('path', {class:'chev', d:`M${W-26} ${y-6} L${W-18} ${y} L${W-26} ${y+6}`, fill:'none', stroke:C.sky, 'stroke-width':2.5, 'stroke-linecap':'round', 'stroke-linejoin':'round'});
     bindTip(g, html);
+    rows.push({g, d, type: d.a == null ? 'exc' : (d.a > d.p ? 'slip' : 'ontime')});
   });
+
+  /* ----- Click a milestone: detail drawer with how each platform handles it (existing card text, reused verbatim) ----- */
+  const drawer = document.getElementById('mdrawer');
+  const mdTitle = document.getElementById('md-title');
+  const mdChips = document.getElementById('md-chips');
+  const mdNote = document.getElementById('md-note');
+  const mdVs = document.getElementById('md-vs');
+  const beckon = document.querySelector('#p1 .beckon');
+  const vsSrc = document.querySelectorAll('#p1 > .vs > .vcol');
+  let selected = -1;
+
+  function settle(){ svg.classList.add('touched'); if (beckon) beckon.classList.add('off'); }
+  function closeRow(){
+    selected = -1;
+    rows.forEach(r => { r.g.classList.remove('sel'); });
+    drawer.hidden = true;
+  }
+  function openRow(i){
+    if (selected === i){ closeRow(); return; }
+    selected = i;
+    settle();
+    const r = rows[i], d = r.d;
+    rows.forEach((x, j) => x.g.classList.toggle('sel', j === i));
+    mdTitle.textContent = d.name;
+    let chips = '<span class="chip">Projected: ' + fmt(d.p) + '</span>';
+    if (d.a != null){
+      chips += '<span class="chip">Actual: ' + fmt(d.a) + '</span>';
+      chips += d.a > d.p ? '<span class="chip amber">+' + Math.round((d.a-d.p)*4.33) + ' wks</span>' : '<span class="chip teal">On time</span>';
+    } else {
+      chips += '<span class="chip">Forecast: ' + fmt(d.f) + '</span><span class="chip red">Exception: ' + d.exception + '</span>';
+    }
+    mdChips.innerHTML = chips;
+    mdNote.textContent = d.note;
+    mdVs.innerHTML = '';
+    vsSrc.forEach(c => {
+      const n = c.cloneNode(true);
+      n.querySelectorAll('.vc-plus,.src-pop').forEach(e => e.remove());
+      ['tabindex','role','aria-expanded','style'].forEach(a => n.removeAttribute(a));
+      n.classList.remove('open');
+      mdVs.appendChild(n);
+    });
+    drawer.hidden = false;
+    drawer.style.animation = 'none'; void drawer.offsetWidth; drawer.style.animation = '';
+    if (gsapReady) gsap.fromTo(mdVs.children, {opacity:0, y:12}, {opacity:1, y:0, duration:0.4, stagger:0.08, ease:"power2.out", clearProps:"transform,opacity"});
+    drawer.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+  rows.forEach((r, i) => {
+    r.g.addEventListener('click', () => openRow(i));
+    r.g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openRow(i); } });
+  });
+  document.getElementById('md-close').addEventListener('click', closeRow);
+
+  /* ----- Add-up tiles: click to spotlight the matching milestones ----- */
+  const stats = Array.from(document.querySelectorAll('#tally .tl-stat'));
+  stats.forEach(b => b.addEventListener('click', () => {
+    const f = b.dataset.filter, wasOn = b.getAttribute('aria-pressed') === 'true';
+    stats.forEach(s => s.setAttribute('aria-pressed', 'false'));
+    if (!wasOn) b.setAttribute('aria-pressed', 'true');
+    rows.forEach(r => r.g.classList.toggle('dim', !wasOn && r.type !== f));
+    settle();
+  }));
+
+  function countUp(){
+    if (!gsapReady) return;
+    document.querySelectorAll('#tally [data-count]').forEach(n => {
+      const to = +n.dataset.count, pre = n.dataset.prefix || '', suf = n.dataset.suffix || '', o = {v:0};
+      gsap.to(o, {v:to, duration:1.4, ease:"power2.out", onUpdate: () => { n.textContent = pre + Math.round(o.v) + suf; }});
+    });
+  }
+  if (gsapReady) ScrollTrigger.create({trigger:'#tally', start:'top 85%', once:true, onEnter:countUp});
 
   function replay(){
     if (!gsapReady) return;
-    gsap.fromTo(Array.from(svg.children), {opacity:0}, {opacity:1, duration:0.4, stagger:0.012, ease:"power1.out"});
+    gsap.fromTo(Array.from(svg.children), {opacity:0}, {opacity:1, duration:0.4, stagger:0.012, ease:"power1.out", clearProps:"opacity"});
+    countUp();
   }
   window.__replayTimeline = replay;
   replay();
+})();
+
+/* ===== Interactive comparison cards (click for the source) and Snowflake lanes (click to isolate) ===== */
+(function(){
+  const cards = document.querySelectorAll('.panel > .vs > .vcol, .panel > .gstrip > .vcol');
+  let openCard = null;
+  function closeCard(){
+    if (!openCard) return;
+    openCard.classList.remove('open');
+    openCard.setAttribute('aria-expanded', 'false');
+    const p = openCard.querySelector('.src-pop'); if (p) p.remove();
+    openCard = null;
+  }
+  cards.forEach(card => {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-expanded', 'false');
+    const plus = document.createElement('span');
+    plus.className = 'vc-plus'; plus.setAttribute('aria-hidden', 'true');
+    plus.innerHTML = '<svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="#0B5CAB" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    card.appendChild(plus);
+
+    function toggle(){
+      const was = openCard === card;
+      closeCard();
+      if (was) return;
+      const ids = [];
+      card.querySelectorAll('a.src[href^="#s"]').forEach(a => { const id = a.getAttribute('href').slice(1); if (ids.indexOf(id) < 0) ids.push(id); });
+      if (!ids.length) return;
+      const pop = document.createElement('div');
+      pop.className = 'src-pop';
+      pop.innerHTML = ids.map(id => { const li = document.getElementById(id); return li ? '<div class="sp-i"><b>' + id.slice(1) + '</b><div>' + li.innerHTML + '</div></div>' : ''; }).join('');
+      pop.addEventListener('click', e => e.stopPropagation());
+      card.appendChild(pop);
+      card.classList.add('open');
+      card.setAttribute('aria-expanded', 'true');
+      openCard = card;
+    }
+    card.addEventListener('click', e => { if (e.target.closest('a')) return; toggle(); });
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); } if (e.key === 'Escape') closeCard(); });
+  });
+  document.addEventListener('click', e => { if (openCard && !openCard.contains(e.target)) closeCard(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCard(); });
+
+  const arch = document.querySelector('.arch');
+  if (arch){
+    const lanes = Array.from(arch.querySelectorAll('.lane'));
+    lanes.forEach(l => {
+      l.setAttribute('tabindex', '0'); l.setAttribute('role', 'button');
+      const pick = () => {
+        const was = l.classList.contains('on');
+        lanes.forEach(x => x.classList.remove('on'));
+        if (!was) l.classList.add('on');
+        arch.classList.toggle('focus', !was);
+      };
+      l.addEventListener('click', pick);
+      l.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pick(); } });
+    });
+  }
 })();
 
 /* ===== Scroll reveals ===== */
