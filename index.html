@@ -366,6 +366,23 @@
   .gcard .fc-flip{background:#032D60;color:#D6EF4B;box-shadow:0 4px 14px rgba(3,45,96,.35)}
   .fc:not(.static){cursor:pointer}
 
+
+  /* Quieter flip buttons: same tone as the card, arrow kept */
+  .fc-flip,.q-flip{animation:none;box-shadow:none;transition:background .25s,border-color .25s,color .25s,transform .25s}
+  .fc-flip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);color:#BBD9F7}
+  .fc-flip:hover{background:rgba(255,255,255,.2);color:#fff}
+  .fc-flip:hover svg,.q-flip:hover svg{transform:rotate(180deg)}
+  .gcard .fc-flip{background:var(--sky-10);border-color:rgba(1,118,211,.25);color:var(--sky);box-shadow:none}
+  .gcard .fc-flip:hover{background:var(--sky-20);color:var(--blue)}
+  .gcard.flipped .fc-flip{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);color:#D8E9FB}
+  .ccard.flipped .fc-flip{background:var(--teal-10);border-color:rgba(6,165,154,.35);color:#056764}
+  .ccard.flipped .fc-flip:hover{background:#C6F1E8}
+  .q-flip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#D8E9FB}
+  .q-flip:hover{background:rgba(255,255,255,.2);color:#fff}
+  .qcard.flipped .q-flip{background:var(--teal-10);border-color:rgba(6,165,154,.35);color:#056764}
+  .qb-cta{display:flex;align-items:center;justify-content:center;text-align:center;gap:8px;margin-top:4px;padding:12px 14px;border-radius:12px;background:var(--navy);color:#fff;font-weight:700;font-size:13.5px;text-decoration:none;transition:background .2s,color .2s,transform .2s}
+  .qb-cta:hover,.qb-cta:focus-visible{background:#D6EF4B;color:#032D60;transform:translateY(-2px)}
+
   /* Goals (light stage) */
   .g-front{padding:30px 26px 62px;background:#fff;border:1px solid rgba(1,118,211,.2);box-shadow:0 14px 38px rgba(3,45,96,.13)}
   .g-front::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,transparent,#D6EF4B,#0176D3,#06A59A,transparent);background-size:200% 100%;animation:qshine 4s linear infinite}
@@ -699,7 +716,7 @@
     </div>
     <div class="grid-crit fcgrid" id="clist">
       <div class="fcwrap">
-        <div class="fc ccard static" data-c="1">
+        <div class="fc ccard" data-c="1">
           <div class="fc-inner">
             <div class="fc-face c-front">
               <span class="c-wm" aria-hidden="true">01</span>
@@ -711,11 +728,13 @@
               <p>ENFRA's own tiers, sectors and transaction types as fields, duplicate rules so two reps don't work the same customer, and AI-assisted account enrichment.</p>
               <span class="badge">Seen in the 10/19 demo</span>
             </div>
+            <div class="fc-face fc-back c-back"><div class="fc-rows"></div></div>
           </div>
+          <button type="button" class="fc-flip" aria-label="Flip card to compare vendors" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12A9 9 0 0 1 18.5 5.8L21 8"/><path d="M21 3v5h-5"/></svg></button>
         </div>
       </div>
       <div class="fcwrap">
-        <div class="fc ccard static" data-c="2">
+        <div class="fc ccard" data-c="2">
           <div class="fc-inner">
             <div class="fc-face c-front">
               <span class="c-wm" aria-hidden="true">02</span>
@@ -727,7 +746,9 @@
               <p>Emails and meetings from Outlook captured to the right account and deal, with follow-up tasks created automatically.</p>
               <span class="badge">Seen in the 10/19 demo</span>
             </div>
+            <div class="fc-face fc-back c-back"><div class="fc-rows"></div></div>
           </div>
+          <button type="button" class="fc-flip" aria-label="Flip card to compare vendors" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12A9 9 0 0 1 18.5 5.8L21 8"/><path d="M21 3v5h-5"/></svg></button>
         </div>
       </div>
       <div class="fcwrap">
@@ -1338,7 +1359,7 @@ const POSTER_SRC = "poster.jpg";
   const P2 = [1,2,3].map(i => '#p2 .vs .vcol:nth-child(' + i + ')');
   const GS = [1,2,3].map(i => '#p3 .gstrip .vcol:nth-child(' + i + ')');
   const gmap = {1:P1, 2:P2, 3:GS};
-  const cmap = {3:P1, 4:[{own:true}, GS[2]], 5:P2, 6:GS};
+  const cmap = {1:[{own:true}], 2:[{own:true}], 3:P1, 4:[{own:true}, GS[2]], 5:P2, 6:GS};
 
   function mkRow(sel, card){
     const r = document.createElement('div');
@@ -1364,6 +1385,10 @@ const POSTER_SRC = "poster.jpg";
         const v = document.createElement('div'); v.className = 'vs-chip'; v.setAttribute('aria-hidden','true'); v.textContent = 'vs'; rows.appendChild(v);
       }
     });
+    if (list.length === 1){
+      const a = document.createElement('a'); a.className = 'qb-cta'; a.href = '#compare'; a.textContent = 'See Salesforce vs. HubSpot and Microsoft \u2192';
+      rows.appendChild(a);
+    }
   }
 
   const cards = Array.from(document.querySelectorAll('.fc:not(.static)'));
