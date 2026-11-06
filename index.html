@@ -331,6 +331,21 @@
 
 
 
+
+  /* Top-right PDF button */
+  .topbar .wrap{gap:14px;max-width:1260px}
+  .nav a{white-space:nowrap}
+  .nav{gap:16px;font-size:13.5px}
+  .conf{font-size:11.5px}
+  .pdf-top{display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;padding:9px 16px;border-radius:999px;background:linear-gradient(135deg,#032D60,#0176D3);color:#fff;font-size:13.5px;font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:0 6px 16px rgba(1,118,211,.35);transition:transform .2s,box-shadow .2s,background .2s,color .2s}
+  .pdf-top svg{color:#D6EF4B;transition:transform .25s}
+  .pdf-top:hover,.pdf-top:focus-visible{background:#D6EF4B;color:#032D60;transform:translateY(-1px);box-shadow:0 10px 22px rgba(214,239,75,.5)}
+  .pdf-top:hover svg,.pdf-top:focus-visible svg{color:#032D60;transform:translateY(2px)}
+  .pdf-top:focus-visible{outline:3px solid var(--sky-20);outline-offset:2px}
+  @media (max-width:1210px){.conf{display:none}}
+  @media (max-width:900px){.pdf-top{padding:9px 13px}.pdf-top span{font-size:13px}}
+  @media (max-width:600px){.pdf-top{padding:11px}.pdf-top span{display:none}}
+
   /* ===== Visual lift: compare, plan, call-to-action, footer ===== */
   #compare,#plan{position:relative;overflow:hidden}
   #compare .wrap,#plan .wrap{position:relative;z-index:1}
@@ -585,6 +600,7 @@
     .tl-scroll{overflow:visible}
     .q-chips{display:none!important}
     #compare,#plan{background:#fff!important}
+    .pdf-top{display:none!important}
     .phase::after,.cta::before,.cta::after,.cta .btn::after{display:none!important}
     .phase.now{background:var(--sky-10)!important;border:2px solid var(--sky)!important;box-shadow:none!important}
     .phase.now h3{color:var(--navy)}
@@ -671,6 +687,10 @@
       <a href="#plan">The plan</a>
     </nav>
     <div class="conf">Prepared for ENFRA · Confidential</div>
+    <a class="pdf-top" href="ENFRA_CRM_Decision_Guide.pdf" target="_blank" rel="noopener" aria-label="Download the decision guide (PDF)">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Download PDF</span>
+    </a>
   </div>
 </header>
 
