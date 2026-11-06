@@ -330,6 +330,64 @@
   .cf{position:absolute;width:8px;height:12px;border-radius:2px;pointer-events:none;z-index:5}
 
 
+
+  /* ===== Visual lift: compare, plan, call-to-action, footer ===== */
+  #compare,#plan{position:relative;overflow:hidden}
+  #compare .wrap,#plan .wrap{position:relative;z-index:1}
+  #compare{background:linear-gradient(180deg,#fff 0%,#EAF4FF 50%,#fff 100%)}
+  #plan{background:linear-gradient(180deg,#fff 0%,#E3F0FF 100%);padding-bottom:84px}
+
+  .tabs{gap:10px}
+  .tab{padding:12px 22px;font-size:15.5px;box-shadow:0 4px 14px rgba(3,45,96,.08);transition:transform .2s,box-shadow .2s,background .2s,color .2s,border-color .2s}
+  .tab:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(1,118,211,.2);border-color:var(--sky)}
+  .tab[aria-selected="true"]{background:linear-gradient(135deg,#032D60,#0176D3);border-color:transparent;box-shadow:0 10px 26px rgba(1,118,211,.38)}
+  .panel-head h3{font-size:30px;letter-spacing:-.01em}
+  .need{background:linear-gradient(90deg,rgba(214,239,75,.35),var(--sky-10) 40%);border-left:4px solid var(--sky);box-shadow:0 6px 18px rgba(3,45,96,.07)}
+  .vcol{box-shadow:0 10px 26px rgba(3,45,96,.08)}
+  .vcol.sf{background:linear-gradient(160deg,#DDF8F1,#fff 72%);box-shadow:0 12px 34px rgba(6,165,154,.2);animation:sfGlow 3.2s ease-in-out infinite}
+  .vcol.sf::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;border-radius:12px 12px 0 0;background:linear-gradient(90deg,#06A59A,#D6EF4B,#0176D3,#06A59A);background-size:200% 100%;animation:qshine 4s linear infinite}
+  @keyframes sfGlow{0%,100%{box-shadow:0 12px 34px rgba(6,165,154,.2),0 0 0 0 rgba(6,165,154,.32)}50%{box-shadow:0 12px 34px rgba(6,165,154,.28),0 0 0 8px rgba(6,165,154,0)}}
+  .vis{position:relative;border-color:rgba(1,118,211,.22);background:linear-gradient(180deg,#fff 0%,#F3F9FF 100%);box-shadow:0 22px 56px rgba(3,45,96,.14)}
+  .vis::before{content:"";position:absolute;left:22px;right:22px;top:-1px;height:4px;border-radius:0 0 6px 6px;background:linear-gradient(90deg,#D6EF4B,#0176D3,#06A59A)}
+  .vis h4{font-size:18px}
+  .lane.sf{background:linear-gradient(90deg,#DDF8F1,#fff 70%);box-shadow:0 10px 26px rgba(6,165,154,.16)}
+  .step .dot{width:40px;height:40px;font-size:16px;background:linear-gradient(135deg,#0176D3,#032D60);box-shadow:0 8px 20px rgba(1,118,211,.4)}
+  .step:not(:last-child)::after{top:36px;left:40px;height:4px;border-radius:4px;background:linear-gradient(90deg,#0176D3,#D6EF4B)}
+
+  .plan{counter-reset:ph;gap:22px;margin-bottom:48px}
+  .plan-line{top:34px;height:4px;border-radius:4px;background:linear-gradient(90deg,#0176D3,#D6EF4B,#06A59A);box-shadow:0 0 18px rgba(1,118,211,.45)}
+  .phase{counter-increment:ph;overflow:hidden;padding:28px 26px 30px;border:1px solid rgba(1,118,211,.18);background:linear-gradient(160deg,#fff,#F3F9FF);box-shadow:0 16px 40px rgba(3,45,96,.12);transition:transform .25s,box-shadow .25s}
+  .phase:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(1,118,211,.22)}
+  .phase::after{content:"0" counter(ph);position:absolute;right:14px;bottom:-14px;font-size:110px;font-weight:800;letter-spacing:-.04em;line-height:1;color:rgba(1,118,211,.07);pointer-events:none}
+  .phase .pl{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:var(--sky-10);margin-bottom:6px}
+  .phase h3{font-size:22px;margin:10px 0 10px}
+  .phase p{font-size:15.5px;position:relative;z-index:1}
+  .phase.now{background:linear-gradient(150deg,#032D60,#0A5CAB);border:2px solid #D6EF4B;box-shadow:0 0 0 5px rgba(214,239,75,.2),0 22px 50px rgba(3,45,96,.35)}
+  .phase.now::after{color:rgba(255,255,255,.08)}
+  .phase.now .pl{background:rgba(214,239,75,.16);color:#D6EF4B}
+  .phase.now .pl::before{content:"";width:8px;height:8px;border-radius:50%;background:#D6EF4B;animation:limedot 1.8s ease-in-out infinite}
+  .phase.now h3{color:#fff}
+  .phase.now p{color:#D8E9FB}
+
+  .cta{border-radius:26px;padding:44px 46px;box-shadow:0 30px 70px rgba(3,45,96,.4);border:1px solid rgba(255,255,255,.14)}
+  .cta>*{position:relative;z-index:1}
+  .cta::before,.cta::after{content:"";position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;z-index:0}
+  .cta::before{width:320px;height:320px;background:rgba(214,239,75,.28);right:-60px;top:-120px;animation:orb2 14s ease-in-out infinite}
+  .cta::after{width:300px;height:300px;background:rgba(1,118,211,.55);left:-80px;bottom:-140px;animation:orb1 16s ease-in-out infinite}
+  .cta h3{font-size:30px;letter-spacing:-.01em;margin:0 0 8px}
+  .cta p{font-size:17px;max-width:560px}
+  .cta .btn{position:relative;overflow:hidden;background:linear-gradient(135deg,#D6EF4B,#B6E04A);color:#032D60;font-size:16.5px;padding:17px 32px;box-shadow:0 12px 30px rgba(214,239,75,.4);transition:transform .2s,box-shadow .2s}
+  .cta .btn::after{content:"";position:absolute;top:0;bottom:0;width:60px;left:-80px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-20deg);animation:btnSweep 3.4s ease-in-out infinite}
+  @keyframes btnSweep{0%,55%{left:-80px}100%{left:120%}}
+  .cta .btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 18px 40px rgba(214,239,75,.55)}
+  .cta-foot{border-top-color:rgba(1,118,211,.25)}
+  .cta-contact{color:var(--ink-2)}
+
+  footer{background:linear-gradient(180deg,#021F45,#021B3D);border-top:0;color:#9FB8D6;padding:48px 0 60px}
+  footer h4{color:#D8E9FB}
+  footer a{color:#9FD0FF}
+  .disc{color:#8FA9C8}
+
   /* ===== Goals + criteria: flip-card stages ===== */
   #heard,#criteria{position:relative;overflow:hidden}
   #heard .wrap,#criteria .wrap{position:relative;z-index:1}
@@ -526,6 +584,17 @@
     #timeline{min-width:0}
     .tl-scroll{overflow:visible}
     .q-chips{display:none!important}
+    #compare,#plan{background:#fff!important}
+    .phase::after,.cta::before,.cta::after,.cta .btn::after{display:none!important}
+    .phase.now{background:var(--sky-10)!important;border:2px solid var(--sky)!important;box-shadow:none!important}
+    .phase.now h3{color:var(--navy)}
+    .phase.now p{color:var(--ink-2)}
+    .phase.now .pl{background:none;color:var(--sky)}
+    .vcol,.vcol.sf,.vis,.phase{box-shadow:none!important;animation:none!important}
+    footer{background:#fff!important;color:var(--ink-3)!important}
+    footer a{color:var(--blue)!important}
+    footer h4{color:var(--ink-2)!important}
+    .disc{color:var(--ink-3)!important}
     .mdrawer,.src-pop,.vc-plus,.beckon,.q-bg,.q-flip,.q-glare,.q-num,.cf{display:none!important}
     .g-bg,.fc-flip,.g-hint,.g-num,.c-wm,.fc-back,.c-ico,.c-ring svg,.scorebar{display:none!important}
     #heard{background:#fff!important}
@@ -844,6 +913,7 @@
 
 <!-- COMPARE -->
 <section id="compare">
+  <div class="g-bg" aria-hidden="true"><i></i><i></i></div>
   <div class="wrap">
     <div class="kicker">How we compare</div>
     <h2>Where ENFRA's needs point to Salesforce</h2>
@@ -1088,6 +1158,7 @@
 
 <!-- PLAN -->
 <section id="plan">
+  <div class="g-bg" aria-hidden="true"><i></i><i></i></div>
   <div class="wrap">
     <div class="kicker">The plan</div>
     <h2>A focused Phase 1 you can build on</h2>
