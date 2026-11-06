@@ -5,15 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>ENFRA × Salesforce | CRM Decision Guide</title>
-<!--
-  ENFRA CRM Decision Guide (self-contained: no external fonts, scripts or images)
-  Before publishing:
-    1. Video: the self-hosted MP4 (VIDEO_SRC) and poster.jpg must sit next to index.html.
-       Optional: set VIDYARD_UUID in the script block at the bottom to switch to Vidyard (view tracking).
-    2. Replace the CTA link (#cta-link) with your preferred contact method.
-    3. Confirm Core sandbox inclusion on the US Sales Cloud pricing page (see data-verify markers).
-  Comparison claims are sourced from vendor public documentation checked Nov 5, 2026 (see Sources).
--->
+<!-- ENFRA CRM Decision Guide. Comparison claims are sourced from vendor public documentation checked Nov 5, 2026 (see Sources). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#032D60; --blue:#0B5CAB; --sky:#0176D3; --sky-10:#EAF5FE; --sky-20:#CFE9FE;
@@ -42,7 +37,7 @@
   .eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:600;color:#9FD0FF}
   .hero h1{font-size:52px;line-height:1.08;margin:12px 0 14px;letter-spacing:-.02em}
   .hero p.lede{font-size:19px;max-width:760px;color:#D8E9FB;margin:0 0 34px}
-  .video{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#06244B;box-shadow:0 20px 50px rgba(0,0,0,.35);max-width:960px}
+  .video{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#06244B;box-shadow:0 20px 50px rgba(0,0,0,.35);max-width:1080px}
   .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .video video{position:absolute;inset:0;width:100%;height:100%;background:#000}
   .video-ph{position:absolute;inset:0;display:block;text-decoration:none;color:var(--navy);background:#06244B}
@@ -168,6 +163,53 @@
 
   .print-only{display:none}
 
+  /* ===== Motion & chrome additions ===== */
+  .progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--sky),var(--teal));z-index:40}
+  .dotnav{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;gap:14px}
+  .dotnav a{width:10px;height:10px;border-radius:50%;background:#C9D6E4;display:block;position:relative;transition:background .2s,transform .2s}
+  .dotnav a::after{content:attr(data-label);position:absolute;right:20px;top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--navy);color:#fff;font-size:11.5px;padding:4px 10px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .15s}
+  .dotnav a:hover::after{opacity:1}
+  .dotnav a.active{background:var(--sky);transform:scale(1.3)}
+
+  .hero{background-size:200% 200%;animation:heroShift 14s ease infinite}
+  @keyframes heroShift{0%{background-position:0% 0%}50%{background-position:100% 100%}100%{background-position:0% 0%}}
+  .play-pill{animation:pillPulse 2.6s ease-in-out infinite}
+  @keyframes pillPulse{0%,100%{box-shadow:0 10px 30px rgba(0,0,0,.3)}50%{box-shadow:0 10px 36px rgba(1,118,211,.45)}}
+  .scroll-cue{display:flex;justify-content:center;margin-top:30px;opacity:0;pointer-events:none;transition:opacity .4s}
+  .scroll-cue.show{opacity:1}
+  .scroll-cue svg{animation:bounce 1.6s ease-in-out infinite}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+  .tabs{position:relative}
+  .tab-indicator{position:absolute;bottom:-2px;height:2px;background:var(--sky);transition:left .25s ease,width .25s ease;z-index:1}
+
+  @keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .panel.active{animation:panelIn .45s ease both}
+
+  .arrow.both{display:inline-block;animation:arrowPulse 1.8s ease-in-out infinite}
+  .arrow:not(.both){display:inline-block;animation:arrowDash 3.4s steps(1) infinite}
+  @keyframes arrowPulse{0%,100%{opacity:.65;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+  @keyframes arrowDash{0%,70%{opacity:.5}78%{opacity:1}100%{opacity:.5}}
+
+  .qhead{display:flex;align-items:center;gap:12px}
+  .qring circle.bg{stroke:var(--line)}
+  .qring circle.fg{stroke:var(--teal);stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset .3s ease}
+
+  .cta{position:relative;overflow:hidden;background:linear-gradient(120deg,var(--navy),#0A3F7E,var(--navy));background-size:220% 220%;animation:ctaShine 7s ease infinite}
+  @keyframes ctaShine{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .cta-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .cta-contact{font-size:13.5px;color:var(--ink-3)}
+  .pdf-link{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-size:13.5px;font-weight:600;text-decoration:none}
+  .pdf-link:hover{text-decoration:underline}
+
+  .plan{position:relative}
+  .plan-line{position:absolute;top:28px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sky),var(--sky-20));transform-origin:left;transform:scaleX(0);z-index:0}
+  .phase{position:relative;z-index:1}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  }
+
   @media screen and (max-width:900px){
     .grid3,.grid-crit,.plan,.steps{grid-template-columns:1fr}
     .vs,.gstrip{grid-template-columns:1fr}
@@ -208,6 +250,15 @@
 </head>
 <body>
 
+<div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+<nav class="dotnav" aria-hidden="true">
+  <a href="#heard" data-label="What you told us"></a>
+  <a href="#criteria" data-label="Your criteria"></a>
+  <a href="#compare" data-label="How we compare"></a>
+  <a href="#questions" data-label="Vendor questions"></a>
+  <a href="#plan" data-label="The plan"></a>
+</nav>
+
 <header class="topbar">
   <div class="wrap">
     <div class="brand">ENFRA <span>×</span> Salesforce</div>
@@ -237,6 +288,10 @@
           <span><strong>Watch the overview</strong><small id="video-note">3 min 55 sec</small></span>
         </span>
       </a>
+    </div>
+
+    <div class="scroll-cue" id="scrollCue" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#BBD9F7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
 
     <div class="hero-meta">
@@ -470,7 +525,13 @@
       <li><label class="q"><input type="checkbox"><span>After go-live, can our own team change stages, fields and reports without a partner?</span></label></li>
       <li><label class="q"><input type="checkbox"><span>What does it take to extend from 25 EaaS users to other ENFRA teams?</span></label></li>
     </ul>
-    <div class="qcount" id="qcount">0 of 6 answered</div>
+    <div class="qhead">
+      <svg class="qring" width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <circle class="bg" cx="17" cy="17" r="14" fill="none" stroke-width="4"/>
+        <circle class="fg" id="qring-fg" cx="17" cy="17" r="14" fill="none" stroke-width="4" stroke-dasharray="87.9646" stroke-dashoffset="87.9646"/>
+      </svg>
+      <div class="qcount" id="qcount">0 of 6 answered</div>
+    </div>
   </div>
 </section>
 
@@ -481,6 +542,7 @@
     <h2>A focused Phase 1 you can build on</h2>
     <p class="sub">Think big, act small: launch fast with the EaaS team, prove value, then extend.</p>
     <div class="plan">
+      <div class="plan-line" aria-hidden="true"></div>
       <div class="phase now">
         <div class="pl">Phase 1 · Now</div>
         <h3>EaaS sales & marketing</h3>
@@ -502,7 +564,14 @@
         <h3>Next step: an architecture session</h3>
         <p>Your Snowflake environment, Microsoft 365, and your roadmap, with your business and data teams together.</p>
       </div>
-      <a class="btn" id="cta-link" href="#">Schedule with your Salesforce team</a>
+      <a class="btn" id="cta-link" href="mailto:edalton@salesforce.com,sbowlus@salesforce.com?subject=ENFRA%20architecture%20session">Schedule with your Salesforce team</a>
+    </div>
+    <div class="cta-foot">
+      <div class="cta-contact">Eric Dalton, Solutions Engineer · Shawn Bowlus, New Logo Account Executive</div>
+      <a class="pdf-link" href="ENFRA_CRM_Decision_Guide.pdf" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download the decision guide (PDF)
+      </a>
     </div>
   </div>
 </section>
@@ -526,7 +595,24 @@
 
 <div class="tip" id="tip" role="tooltip"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
+/* ===== Motion engine (degrades gracefully if the CDN above is blocked, or if the visitor prefers reduced motion) ===== */
+const prefersReducedMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+const gsapReady = !!(window.gsap && window.ScrollTrigger) && !prefersReducedMotion;
+if (gsapReady){ gsap.registerPlugin(ScrollTrigger); }
+
+function animatePanel(panel){
+  if (!gsapReady || !panel) return;
+  const cols = panel.querySelectorAll('.vs .vcol, .gstrip .vcol');
+  if (cols.length) gsap.fromTo(cols, {opacity:0, y:16}, {opacity:1, y:0, duration:0.5, stagger:0.1, ease:"power2.out"});
+  const steps = panel.querySelectorAll('.step');
+  if (steps.length) gsap.fromTo(steps, {opacity:0, y:16}, {opacity:1, y:0, duration:0.5, stagger:0.15, ease:"power2.out", delay:0.1});
+  const lanes = panel.querySelectorAll('.lane');
+  if (lanes.length) gsap.fromTo(lanes, {opacity:0, x:-16}, {opacity:1, x:0, duration:0.5, stagger:0.12, ease:"power2.out"});
+}
+
 /* ===== Configuration ===== */
 const VIDYARD_UUID = "";        // Optional: Vidyard video ID (Share > Embed). If set, Vidyard is used instead of the MP4 below (adds view tracking).
 const VIDYARD_SHARE_URL = "";   // Optional: e.g. "https://salesforce.vidyard.com/watch/AbC123..."
@@ -548,6 +634,10 @@ const POSTER_SRC = "poster.jpg";
       v.appendChild(s);
       box.appendChild(v);
       ph.classList.add('print-only');
+      v.addEventListener('ended', () => {
+        const cue = document.getElementById('scrollCue');
+        if (cue) cue.classList.add('show');
+      });
       const p = v.play(); if (p && p.catch) p.catch(() => {});
     });
   } else if (VIDYARD_SHARE_URL && !VIDYARD_UUID){
@@ -569,14 +659,33 @@ const POSTER_SRC = "poster.jpg";
 
 /* ===== Tabs ===== */
 (function(){
+  const tabsWrap = document.querySelector('.tabs');
   const tabs = Array.from(document.querySelectorAll('.tab'));
+  const indicator = document.createElement('span');
+  indicator.className = 'tab-indicator';
+  if (tabsWrap) tabsWrap.appendChild(indicator);
+
+  function moveIndicator(t){
+    if (!tabsWrap || !t) return;
+    const wrapRect = tabsWrap.getBoundingClientRect();
+    const r = t.getBoundingClientRect();
+    indicator.style.left = (r.left - wrapRect.left) + "px";
+    indicator.style.width = r.width + "px";
+  }
+
   function select(t){
     tabs.forEach(x => {
       const on = x === t;
       x.setAttribute('aria-selected', on);
       x.tabIndex = on ? 0 : -1;
-      document.getElementById(x.getAttribute('aria-controls')).classList.toggle('active', on);
+      const panel = document.getElementById(x.getAttribute('aria-controls'));
+      panel.classList.toggle('active', on);
+      if (on){
+        animatePanel(panel);
+        if (panel.id === 'p1' && window.__replayTimeline) window.__replayTimeline();
+      }
     });
+    moveIndicator(t);
   }
   tabs.forEach((t,i) => {
     t.addEventListener('click', () => select(t));
@@ -587,13 +696,26 @@ const POSTER_SRC = "poster.jpg";
       }
     });
   });
+  const initial = tabs.find(t => t.getAttribute('aria-selected') === 'true') || tabs[0];
+  window.addEventListener('load', () => {
+    moveIndicator(initial);
+    const initialPanel = document.getElementById(initial.getAttribute('aria-controls'));
+    animatePanel(initialPanel);
+  });
+  window.addEventListener('resize', () => moveIndicator(tabs.find(t => t.getAttribute('aria-selected') === 'true')));
 })();
 
 /* ===== Vendor questions ===== */
 (function(){
   const boxes = document.querySelectorAll('#qlist input');
   const out = document.getElementById('qcount');
-  const upd = () => { out.textContent = Array.from(boxes).filter(b => b.checked).length + " of " + boxes.length + " answered"; };
+  const ring = document.getElementById('qring-fg');
+  const CIRC = 87.9646;
+  const upd = () => {
+    const checked = Array.from(boxes).filter(b => b.checked).length;
+    out.textContent = checked + " of " + boxes.length + " answered";
+    if (ring) ring.style.strokeDashoffset = CIRC * (1 - checked / boxes.length);
+  };
   boxes.forEach(b => b.addEventListener('change', upd));
 })();
 
@@ -675,6 +797,58 @@ const POSTER_SRC = "poster.jpg";
     html += "<br><span style='opacity:.8'>" + d.note + "</span>";
     bindTip(g, html);
   });
+
+  function replay(){
+    if (!gsapReady) return;
+    gsap.fromTo(Array.from(svg.children), {opacity:0}, {opacity:1, duration:0.4, stagger:0.012, ease:"power1.out"});
+  }
+  window.__replayTimeline = replay;
+  replay();
+})();
+
+/* ===== Scroll reveals ===== */
+if (gsapReady){
+  const reveal = (sel) => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      gsap.from(el, {opacity:0, y:24, duration:0.6, ease:"power2.out", delay:(i % 8) * 0.06, scrollTrigger:{trigger:el, start:"top 88%"}});
+    });
+  };
+  reveal('#heard .card');
+  reveal('.grid-crit .crit');
+  reveal('#questions .q');
+
+  gsap.from('.plan-line', {scaleX:0, duration:0.9, ease:"power2.out", scrollTrigger:{trigger:'#plan', start:"top 75%"}});
+  gsap.from('.plan .phase', {opacity:0, y:20, duration:0.5, stagger:0.12, scrollTrigger:{trigger:'#plan', start:"top 75%"}});
+}
+
+/* ===== Reading progress + scroll-spy + dot nav ===== */
+(function(){
+  const bar = document.getElementById('progressBar');
+  const navLinks = Array.from(document.querySelectorAll('.nav a'));
+  const dots = Array.from(document.querySelectorAll('.dotnav a'));
+  const sections = ['heard','criteria','compare','questions','plan'].map(id => document.getElementById(id)).filter(Boolean);
+
+  function onScroll(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop || document.body.scrollTop;
+    const max = (h.scrollHeight || document.body.scrollHeight) - h.clientHeight;
+    if (bar) bar.style.width = (max > 0 ? (scrolled / max) * 100 : 0) + "%";
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  if (sections.length && 'IntersectionObserver' in window){
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          const id = e.target.id;
+          navLinks.forEach(a => { a.style.color = (a.getAttribute('href') === '#' + id) ? 'var(--sky)' : ''; });
+          dots.forEach(d => d.classList.toggle('active', d.getAttribute('href') === '#' + id));
+        }
+      });
+    }, {rootMargin: "-45% 0px -50% 0px"});
+    sections.forEach(s => spy.observe(s));
+  }
 })();
 </script>
 </body>
