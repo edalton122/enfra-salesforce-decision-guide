@@ -268,6 +268,67 @@
   .mdrawer .vs{margin:0}
   .mdrawer .vcol{cursor:default}
 
+  /* ===== Vendor questions: flip-card stage ===== */
+  #questions{position:relative;overflow:hidden;background:linear-gradient(160deg,#021F45 0%,#032D60 55%,#06407F 100%);color:#fff}
+  #questions .wrap{position:relative;z-index:1}
+  #questions .kicker{color:#D6EF4B}
+  #questions h2{color:#fff}
+  #questions .sub{color:#BBD9F7}
+  #questions .qcount{color:#D8E9FB;margin-top:0}
+  #questions .qhead{margin-top:26px}
+  #questions .qring circle.bg{stroke:rgba(255,255,255,.22)}
+  #questions .qring circle.fg{stroke:#D6EF4B}
+  .q-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:56px 56px}
+  .q-bg i{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
+  .q-bg i:nth-child(1){width:460px;height:460px;background:#0176D3;top:-120px;left:-80px;animation:orb1 18s ease-in-out infinite}
+  .q-bg i:nth-child(2){width:380px;height:380px;background:#06A59A;bottom:-140px;right:5%;opacity:.4;animation:orb2 22s ease-in-out infinite}
+  .q-bg i:nth-child(3){width:260px;height:260px;background:#D6EF4B;top:40%;right:-80px;opacity:.16;animation:orb1 26s ease-in-out infinite reverse}
+  @keyframes orb1{0%,100%{transform:translate(0,0)}50%{transform:translate(90px,60px)}}
+  @keyframes orb2{0%,100%{transform:translate(0,0)}50%{transform:translate(-110px,-50px)}}
+
+  .qgrid{grid-template-columns:repeat(3,1fr);gap:22px}
+  .qwrap{perspective:1200px;list-style:none}
+  .qcard{--rx:0deg;--ry:0deg;--ty:0px;position:relative;height:475px;transform-style:preserve-3d;transform:translateY(var(--ty)) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .18s ease-out}
+  .qcard:hover{--ty:-5px}
+  .q-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.2,.8,.2,1)}
+  .qcard.flipped .q-inner{transform:rotateY(180deg)}
+  .q-face{position:absolute;inset:0;border-radius:20px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+  .q-front{display:flex;flex-direction:column;justify-content:flex-end;gap:14px;padding:70px 24px 26px;background:linear-gradient(150deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.2);box-shadow:0 18px 44px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.25)}
+  .q-front::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,transparent,#D6EF4B,#0176D3,#06A59A,transparent);background-size:200% 100%;animation:qshine 4s linear infinite}
+  @keyframes qshine{from{background-position:200% 0}to{background-position:-200% 0}}
+  .q-num{position:absolute;right:14px;bottom:-14px;font-size:130px;font-weight:800;letter-spacing:-.04em;line-height:1;color:rgba(255,255,255,.07);user-select:none}
+  .q-icon{position:relative;width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#032D60;background:linear-gradient(135deg,#D6EF4B,#7BE0D4);box-shadow:0 8px 22px rgba(214,239,75,.28)}
+  .q-text{position:relative;margin:0;font-size:18px;line-height:1.4;font-weight:600;color:#fff}
+  .q-glare{position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.22),transparent 48%);opacity:0;transition:opacity .2s;pointer-events:none}
+  .qcard:hover .q-glare{opacity:1}
+  .qcard.done .q-front{border-color:#D6EF4B;box-shadow:0 0 0 1px #D6EF4B,0 0 34px rgba(214,239,75,.35),0 18px 44px rgba(0,0,0,.28)}
+  .q-back{transform:rotateY(180deg);background:#fff;border:2px solid var(--teal);box-shadow:0 0 0 5px rgba(6,165,154,.18),0 22px 50px rgba(0,0,0,.35);padding:58px 16px 16px;overflow:auto;color:var(--ink)}
+  .q-rows{display:grid;gap:9px}
+  .qb-row{border-radius:12px;padding:10px 12px;border:1px solid #F0D8DB;background:linear-gradient(180deg,#FDF5F5,#fff)}
+  .qb-row .who{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9A6068;margin-bottom:4px;display:flex;align-items:center;gap:7px}
+  .qb-row .who::before{content:"";width:7px;height:7px;border-radius:50%;background:#E6BCC1;flex:0 0 7px}
+  .qb-row p{margin:0;font-size:12.5px;line-height:1.45;color:#4A4546}
+  .qb-row.sf{border:2px solid var(--teal);background:linear-gradient(180deg,#EDFBF8,#fff);box-shadow:0 0 0 0 rgba(6,165,154,.4)}
+  .qb-row.sf .who{color:#056764}
+  .qb-row.sf .who::before{display:none}
+  .qb-row.sf p{color:var(--ink);font-size:13px}
+  .qcard.flipped .qb-row{animation:qrow .5s ease both}
+  .qcard.flipped .qb-row:nth-child(2){animation-delay:.35s}
+  .qcard.flipped .qb-row:nth-child(3){animation-delay:.5s}
+  .qcard.flipped .qb-row.sf{animation:qrow .5s ease both,qglow 2.6s ease-in-out .9s infinite}
+  @keyframes qrow{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes qglow{0%,100%{box-shadow:0 0 0 0 rgba(6,165,154,.35)}50%{box-shadow:0 0 0 7px rgba(6,165,154,0)}}
+  .q-check{position:absolute;top:16px;left:16px;z-index:3;transform:translateZ(2px);appearance:none;width:26px;height:26px;border-radius:9px;border:2px solid #fff;background:rgba(3,45,96,.6);cursor:pointer;display:grid;place-content:center;box-shadow:0 2px 10px rgba(0,0,0,.25);transition:background .2s,transform .2s}
+  .q-check:hover{transform:translateZ(2px) scale(1.1)}
+  .q-check:checked{background:var(--teal);border-color:#fff}
+  .q-check:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+  .q-check:focus-visible,.q-flip:focus-visible{outline:3px solid #D6EF4B;outline-offset:2px}
+  .q-flip{position:absolute;top:14px;right:14px;z-index:3;transform:translateZ(2px);width:32px;height:32px;border-radius:50%;border:0;background:#fff;color:#032D60;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.3);animation:flipPulse 2.2s ease-out 4}
+  .q-flip svg{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+  .qcard.flipped .q-flip svg{transform:rotate(180deg)}
+  @keyframes flipPulse{0%{box-shadow:0 4px 14px rgba(0,0,0,.3),0 0 0 0 rgba(214,239,75,.7)}100%{box-shadow:0 4px 14px rgba(0,0,0,.3),0 0 0 14px rgba(214,239,75,0)}}
+  .cf{position:absolute;width:8px;height:12px;border-radius:2px;pointer-events:none;z-index:5}
+
   /* Brand lockup (top bar + hero) */
   .brand-logos{display:flex;align-items:center;gap:14px;text-decoration:none}
   .brand-logos img{display:block;width:auto}
@@ -300,7 +361,8 @@
   @media screen and (max-width:900px){
     .grid3,.grid-crit,.plan,.steps{grid-template-columns:1fr}
     .vs,.gstrip,.tally{grid-template-columns:1fr}
-    .qlist{grid-template-columns:1fr}
+    .qlist,.qgrid{grid-template-columns:1fr}
+    .qcard{height:495px}
     .nav{display:none}
     .conf,.dotnav{display:none}
     .hero-grid{grid-template-columns:1fr;gap:28px}
@@ -318,7 +380,20 @@
     .video-ph.print-only{display:flex}
     #timeline{min-width:0}
     .tl-scroll{overflow:visible}
-    .mdrawer,.src-pop,.vc-plus,.beckon{display:none!important}
+    .mdrawer,.src-pop,.vc-plus,.beckon,.q-bg,.q-flip,.q-glare,.q-num,.cf{display:none!important}
+    #questions{background:#fff!important;color:var(--ink)}
+    #questions h2{color:var(--navy)}
+    #questions .sub{color:var(--ink-3)}
+    #questions .kicker{color:var(--sky)}
+    .qcard{height:auto;transform:none!important}
+    .q-inner{position:static;transform:none!important}
+    .q-face{position:static;backface-visibility:visible}
+    .q-front{padding:14px 16px;background:#fff;border:1px solid var(--line);box-shadow:none;flex-direction:row;align-items:center}
+    .q-front::before{display:none}
+    .q-icon{display:none}
+    .q-text{color:var(--ink-2);font-size:14px}
+    .q-back{display:none}
+    .q-check{position:static;margin:0 0 0 0;transform:none;background:#fff;border-color:#A0A0A0}
     .cap .hover-hint{display:none}
     #criteria,#compare,#questions{break-before:page}
     .hero{padding:28px 0 30px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -642,17 +717,90 @@
 
 <!-- QUESTIONS -->
 <section id="questions" class="alt">
+  <div class="q-bg" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="wrap">
     <div class="kicker">Questions to ask every vendor</div>
     <h2>Put every platform to the same test</h2>
     <p class="sub">Use these with each vendor in your evaluation, including us. Check them off as you get answers.</p>
-    <ul class="qlist" id="qlist">
-      <li><label class="q"><input type="checkbox"><span>Can we track projected vs. actual dates for every milestone and flag exceptions, on the edition you're quoting?</span></label></li>
-      <li><label class="q"><input type="checkbox"><span>Which edition or add-on is required for custom objects and a sandbox to test changes?</span></label></li>
-      <li><label class="q"><input type="checkbox"><span>Does our Snowflake data stay in Snowflake, or is it synced or copied? How often, and in which directions?</span></label></li>
-      <li><label class="q"><input type="checkbox"><span>Which products are required for CRM, email campaigns, analytics and AI, and what does each include?</span></label></li>
-      <li><label class="q"><input type="checkbox"><span>After go-live, can our own team change stages, fields and reports without a partner?</span></label></li>
-      <li><label class="q"><input type="checkbox"><span>What does it take to extend from 25 EaaS users to other ENFRA teams?</span></label></li>
+    <ul class="qlist qgrid" id="qlist">
+      <li class="qwrap"><div class="qcard" data-q="1">
+        <div class="q-inner">
+          <div class="q-face q-front">
+            <div class="q-num" aria-hidden="true">01</div>
+            <div class="q-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></div>
+            <p class="q-text" id="qq1">Can we track projected vs. actual dates for every milestone and flag exceptions, on the edition you're quoting?</p>
+            <div class="q-glare"></div>
+          </div>
+          <div class="q-face q-back"><div class="q-rows"></div></div>
+        </div>
+        <input type="checkbox" class="q-check" aria-labelledby="qq1">
+        <button type="button" class="q-flip" aria-label="Flip card" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></button>
+      </div></li>
+      <li class="qwrap"><div class="qcard" data-q="2">
+        <div class="q-inner">
+          <div class="q-face q-front">
+            <div class="q-num" aria-hidden="true">02</div>
+            <div class="q-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+            <p class="q-text" id="qq2">Which edition or add-on is required for custom objects and a sandbox to test changes?</p>
+            <div class="q-glare"></div>
+          </div>
+          <div class="q-face q-back"><div class="q-rows"></div></div>
+        </div>
+        <input type="checkbox" class="q-check" aria-labelledby="qq2">
+        <button type="button" class="q-flip" aria-label="Flip card" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></button>
+      </div></li>
+      <li class="qwrap"><div class="qcard" data-q="3">
+        <div class="q-inner">
+          <div class="q-face q-front">
+            <div class="q-num" aria-hidden="true">03</div>
+            <div class="q-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4.2 7l15.6 10M19.8 7L4.2 17M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5"/></svg></div>
+            <p class="q-text" id="qq3">Does our Snowflake data stay in Snowflake, or is it synced or copied? How often, and in which directions?</p>
+            <div class="q-glare"></div>
+          </div>
+          <div class="q-face q-back"><div class="q-rows"></div></div>
+        </div>
+        <input type="checkbox" class="q-check" aria-labelledby="qq3">
+        <button type="button" class="q-flip" aria-label="Flip card" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></button>
+      </div></li>
+      <li class="qwrap"><div class="qcard" data-q="4">
+        <div class="q-inner">
+          <div class="q-face q-front">
+            <div class="q-num" aria-hidden="true">04</div>
+            <div class="q-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg></div>
+            <p class="q-text" id="qq4">Which products are required for CRM, email campaigns, analytics and AI, and what does each include?</p>
+            <div class="q-glare"></div>
+          </div>
+          <div class="q-face q-back"><div class="q-rows"></div></div>
+        </div>
+        <input type="checkbox" class="q-check" aria-labelledby="qq4">
+        <button type="button" class="q-flip" aria-label="Flip card" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></button>
+      </div></li>
+      <li class="qwrap"><div class="qcard" data-q="5">
+        <div class="q-inner">
+          <div class="q-face q-front">
+            <div class="q-num" aria-hidden="true">05</div>
+            <div class="q-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></div>
+            <p class="q-text" id="qq5">After go-live, can our own team change stages, fields and reports without a partner?</p>
+            <div class="q-glare"></div>
+          </div>
+          <div class="q-face q-back"><div class="q-rows"></div></div>
+        </div>
+        <input type="checkbox" class="q-check" aria-labelledby="qq5">
+        <button type="button" class="q-flip" aria-label="Flip card" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></button>
+      </div></li>
+      <li class="qwrap"><div class="qcard" data-q="6">
+        <div class="q-inner">
+          <div class="q-face q-front">
+            <div class="q-num" aria-hidden="true">06</div>
+            <div class="q-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></div>
+            <p class="q-text" id="qq6">What does it take to extend from 25 EaaS users to other ENFRA teams?</p>
+            <div class="q-glare"></div>
+          </div>
+          <div class="q-face q-back"><div class="q-rows"></div></div>
+        </div>
+        <input type="checkbox" class="q-check" aria-labelledby="qq6">
+        <button type="button" class="q-flip" aria-label="Flip card" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg></button>
+      </div></li>
     </ul>
     <div class="qhead">
       <svg class="qring" width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
@@ -840,12 +988,107 @@ const POSTER_SRC = "poster.jpg";
   const out = document.getElementById('qcount');
   const ring = document.getElementById('qring-fg');
   const CIRC = 87.9646;
+  function confetti(){
+    if (prefersReducedMotion || !Element.prototype.animate) return;
+    const host = document.getElementById('questions');
+    const r = out.getBoundingClientRect(), hr = host.getBoundingClientRect();
+    const ox = r.left - hr.left + 20, oy = r.top - hr.top;
+    const colors = ['#D6EF4B','#0176D3','#06A59A','#ffffff','#9FD0FF'];
+    for (let i = 0; i < 80; i++){
+      const e = document.createElement('i');
+      e.className = 'cf';
+      e.style.cssText = 'left:' + ox + 'px;top:' + oy + 'px;background:' + colors[i % colors.length];
+      host.appendChild(e);
+      const a = -Math.random() * Math.PI, v = 180 + Math.random() * 340;
+      const dx = Math.cos(a) * v, dy = Math.sin(a) * v;
+      e.animate([
+        {transform:'translate(0,0) rotate(0deg)', opacity:1},
+        {transform:'translate(' + dx + 'px,' + dy + 'px) rotate(' + (Math.random()*540) + 'deg)', opacity:1, offset:0.55},
+        {transform:'translate(' + (dx*1.15) + 'px,' + (dy + 300) + 'px) rotate(900deg)', opacity:0}
+      ], {duration:1500 + Math.random()*700, easing:'cubic-bezier(.2,.7,.3,1)'}).onfinish = () => e.remove();
+    }
+  }
+  let wasComplete = false;
   const upd = () => {
     const checked = Array.from(boxes).filter(b => b.checked).length;
     out.textContent = checked + " of " + boxes.length + " answered";
     if (ring) ring.style.strokeDashoffset = CIRC * (1 - checked / boxes.length);
+    boxes.forEach(b => { const c = b.closest('.qcard'); if (c) c.classList.toggle('done', b.checked); });
+    const complete = checked === boxes.length;
+    if (complete && !wasComplete) confetti();
+    wasComplete = complete;
   };
   boxes.forEach(b => b.addEventListener('change', upd));
+})();
+
+/* ===== Question flip cards: backs are built from the sentences already on this page (verbatim), so nothing is re-worded ===== */
+(function(){
+  const $ = s => document.querySelector(s);
+  const sfWho = $('#p1 .vcol.sf .who');
+  const src = {
+    1: ['#p1 .vs .vcol:nth-child(1)', '#p1 .vs .vcol:nth-child(2)', '#p1 .vs .vcol:nth-child(3)'],
+    2: ['#p3 .gstrip .vcol:nth-child(1)', '#p3 .gstrip .vcol:nth-child(2)'],
+    3: ['#p2 .vs .vcol:nth-child(1)', '#p2 .vs .vcol:nth-child(2)', '#p2 .vs .vcol:nth-child(3)'],
+    4: ['#p3 .gstrip .vcol:nth-child(1)', '#p3 .gstrip .vcol:nth-child(3)'],
+    5: [{who:true, p:'.grid-crit .crit:nth-child(5) p'}],
+    6: [{who:true, p:'.plan .phase:last-child p'}]
+  };
+  function row(sel){
+    const r = document.createElement('div');
+    if (typeof sel === 'string'){
+      const c = $(sel); if (!c) return null;
+      r.className = 'qb-row' + (c.classList.contains('sf') ? ' sf' : '');
+      r.appendChild(c.querySelector('.who').cloneNode(true));
+      r.appendChild(c.querySelector('p').cloneNode(true));
+    } else {
+      const p = $(sel.p); if (!p) return null;
+      r.className = 'qb-row sf';
+      r.appendChild(sfWho.cloneNode(true));
+      r.appendChild(p.cloneNode(true));
+    }
+    return r;
+  }
+  const cards = Array.from(document.querySelectorAll('.qcard'));
+  cards.forEach(card => {
+    const rows = card.querySelector('.q-rows');
+    (src[card.dataset.q] || []).forEach(s => { const r = row(s); if (r) rows.appendChild(r); });
+    const btn = card.querySelector('.q-flip');
+    const flip = () => {
+      const on = card.classList.toggle('flipped');
+      btn.setAttribute('aria-pressed', on);
+      card.classList.remove('peeked');
+    };
+    card.addEventListener('click', e => { if (e.target.closest('.q-check, a, .q-rows')) return; flip(); });
+    btn.addEventListener('click', e => { e.stopPropagation(); flip(); });
+    card.querySelector('.q-rows').addEventListener('click', e => { if (!e.target.closest('a')) flip(); });
+
+    // 3D tilt + glare that follow the pointer (skipped for touch and reduced motion)
+    if (!prefersReducedMotion && window.matchMedia('(hover:hover)').matches){
+      card.addEventListener('mousemove', e => {
+        const b = card.getBoundingClientRect(), px = (e.clientX - b.left) / b.width, py = (e.clientY - b.top) / b.height;
+        const k = card.classList.contains('flipped') ? 0.5 : 1;
+        card.style.setProperty('--ry', ((px - 0.5) * 12 * k) + 'deg');
+        card.style.setProperty('--rx', ((0.5 - py) * 9 * k) + 'deg');
+        card.style.setProperty('--gx', (px * 100) + '%');
+        card.style.setProperty('--gy', (py * 100) + '%');
+      });
+      card.addEventListener('mouseleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
+    }
+  });
+
+  // One-time "peek" so visitors see the cards turn over
+  const list = document.getElementById('qlist');
+  if (!prefersReducedMotion && 'IntersectionObserver' in window && Element.prototype.animate){
+    const io = new IntersectionObserver(es => {
+      if (!es[0].isIntersecting) return;
+      io.disconnect();
+      setTimeout(() => cards.forEach((c, i) => {
+        if (c.classList.contains('flipped')) return;
+        c.querySelector('.q-inner').animate([{transform:'rotateY(0deg)'},{transform:'rotateY(34deg)',offset:.4},{transform:'rotateY(0deg)'}], {duration:1100, delay:i*140, easing:'ease-in-out'});
+      }), 1100);
+    }, {threshold:0.5});
+    io.observe(list);
+  }
 })();
 
 /* ===== Milestone timeline ===== */
@@ -1088,7 +1331,7 @@ if (gsapReady){
   };
   reveal('#heard .card');
   reveal('.grid-crit .crit');
-  reveal('#questions .q');
+  gsap.from('#questions .qwrap', {opacity:0, y:50, rotateX:-18, transformPerspective:900, duration:0.8, stagger:0.1, ease:"power3.out", clearProps:"transform,opacity", scrollTrigger:{trigger:'#qlist', start:"top 82%"}});
 
   gsap.from('.plan-line', {scaleX:0, duration:0.9, ease:"power2.out", scrollTrigger:{trigger:'#plan', start:"top 75%"}});
   gsap.from('.plan .phase', {opacity:0, y:20, duration:0.5, stagger:0.12, scrollTrigger:{trigger:'#plan', start:"top 75%"}});
