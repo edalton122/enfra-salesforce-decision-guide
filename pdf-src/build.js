@@ -44,6 +44,7 @@ function extract(sels, strip) {
       const w = { index: new Set(), team: new Set() };
       document.querySelectorAll('[data-from]').forEach(e => w[e.dataset.page || 'index'].add(e.dataset.from));
       document.querySelectorAll('[data-excerpt]').forEach(e => w.index.add(e.dataset.excerpt));
+      document.querySelectorAll('[data-chip]').forEach(e => w.index.add(e.dataset.chip));
       return { index: [...w.index], team: [...w.team] };
     });
 
@@ -71,6 +72,11 @@ function extract(sels, strip) {
         if (!v.text.includes(want)) { errs.push('Excerpt not verbatim: "' + want + '" in ' + e.dataset.excerpt); return; }
         e.innerHTML = '<span class="q"></span>' + v.srcs.join('');
         e.firstChild.textContent = want;
+      });
+      document.querySelectorAll('[data-chip]').forEach(e => {
+        const v = data.index[e.dataset.chip], want = e.dataset.text;
+        if (!v.text.includes(want)) { errs.push('Chip not verbatim: "' + want + '" in ' + e.dataset.chip); return; }
+        e.textContent = want;
       });
       document.querySelectorAll('[data-mark]').forEach(e => {
         for (const spec of e.dataset.mark.split('|')) {
