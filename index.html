@@ -437,6 +437,29 @@
   @keyframes bsFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
   @keyframes bsTravel{from{top:-9px}to{top:100%}}
 
+
+  /* Flattened hero banner: video sits high on the page */
+  .hero{padding:20px 0 26px}
+  .hero-grid{grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;margin-bottom:18px}
+  .hero .eyebrow{font-size:11.5px}
+  .hero h1{font-size:40px;margin:6px 0 8px}
+  .hero p.lede{font-size:16px;line-height:1.5;max-width:600px}
+  .brand-stage{flex-direction:row;gap:16px;padding:14px 26px;min-height:0;border-radius:18px}
+  .bs-glow{width:260px;height:260px}
+  .bs-rings{width:300px;height:300px;margin:-150px 0 0 -150px}
+  .bs-enfra{width:150px}
+  .bs-sf{width:72px}
+  .bs-link{flex-direction:row;gap:6px}
+  .bs-line{width:18px;height:2px}
+  .bs-line::after{width:8px;height:100%;top:0;left:-8px;animation:bsTravelX 1.8s linear infinite}
+  .bs-x{width:26px;height:26px}
+  @keyframes bsTravelX{from{left:-8px}to{left:100%}}
+  .video{margin:0 auto;max-width:min(1080px,max(560px,calc((100vh - 275px) * 1.7778)))}
+  .hero-meta{margin-top:18px;justify-content:center}
+  .scroll-cue{margin-top:6px}
+  @media (min-width:901px){.hero h1 br{display:none}}
+  @media (max-width:900px){.hero{padding:18px 0 22px}.hero-grid{grid-template-columns:1fr;gap:16px;margin-bottom:14px}.hero h1{font-size:32px}.brand-stage{justify-content:center;padding:12px 16px;gap:12px}.bs-enfra{width:128px}.bs-sf{width:60px}}
+
   .plan{position:relative}
   .plan-line{position:absolute;top:28px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sky),var(--sky-20));transform-origin:left;transform:scaleX(0);z-index:0}
   .phase{position:relative;z-index:1}
@@ -556,7 +579,7 @@
     <div class="hero-grid">
       <div class="hero-copy">
         <div class="eyebrow">CRM Decision Guide · November 2026</div>
-        <h1>Do it once.<br>Do it right.</h1>
+        <h1>Do it once.<br> Do it right.</h1>
         <p class="lede">One connected platform for ENFRA's multi-year energy partnerships: from the EaaS team's 6–18 month pursuits today, to every ENFRA team tomorrow.</p>
       </div>
       <div class="brand-stage" role="group" aria-label="ENFRA and Salesforce">
